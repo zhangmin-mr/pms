@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 自定义Realm -->
+    <bean id="customRealm" class="com.netpass.pap.frame.shiro.realm.UserRealm">
+        <property name="userService" ref="userService"></property>
+    </bean>
+
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realms" ref="customRealm"></property>
+    </bean>
+
+    <!-- 除了已经设置的其他路径的认证 -->
+    <!-- shiro工厂bean配置 Shiro的Web过滤器 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- shiro的核心安全接口 -->
+        <property name="securityManager" ref="securityManager"></property>
+        <!-- 要求登录时的连接 -->
+        <property name="loginUrl" value="/erorr_nologin.do"></property>
+        <!-- 未认证时要跳转的连接 -->
+        <property name="unauthorizedUrl" value="/securieserror.do"></property>
+        <!-- shiro连接约束配置 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 对静态资源设置允许匿名访问 -->
+                /static/** = anon
+                <!-- 可匿名访问路径，例如：验证码、登录连接、注册连接等 -->
+                /code.do/** = anon
+                /login.do/** = anon
+                /register.do/** = anon
+                /loginSubmit.do/**= anon
+                /goodsMain.do/**= anon
+                /AjaxCategory.do/**= anon
+                / = anon
+                <!-- session失效 -->
+                /login_out.do=logout
+                <!-- 剩余其他路径，必须认证通过才可以访问 -->
+                /** = authc
+
+            </value>
+        </property>
+    </bean>
+</beans>
