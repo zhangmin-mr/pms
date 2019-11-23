@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 自定义Realm -->
-    <bean id="customRealm" class="com.netpass.pap.frame.shiro.realm.UserRealm">
+    <bean id="customRealm" class="com.ziyan.frame.shiro.realm.UserRealm">
         <property name="userService" ref="userService"></property>
     </bean>
 

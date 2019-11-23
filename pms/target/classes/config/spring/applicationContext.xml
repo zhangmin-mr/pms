@@ -28,7 +28,7 @@
 
     <!-- 不扫描Controller注解 -->
     <context:component-scan
-            base-package="com.netpass.pap">
+            base-package="com.ziyan">
         <context:exclude-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
@@ -47,10 +47,10 @@
     <import resource="classpath:config/spring/db/spring-db.xml" />
 
     <!--redis配置 -->
-    <import	resource="classpath:config/spring/redis/spring-redis.xml" />
+<!--    <import	resource="classpath:config/spring/redis/spring-redis.xml" />-->
 
     <!-- shiro配置 -->
-    <import resource="classpath:config/spring/security/spring-config-shiro.xml" />
+<!--    <import resource="classpath:config/spring/security/spring-config-shiro.xml" />-->
 
 
 

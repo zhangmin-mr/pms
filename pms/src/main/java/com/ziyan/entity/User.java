@@ -1,27 +1,29 @@
 package com.ziyan.entity;
 
 public class User {
-    private Integer id;
-    private Integer nameId;
+    private Integer userId;
     private String userName;
     private String passWord;
     private String email;
+    private Integer state;
 
-    public Integer getId() {
-        return id;
+    public Integer getState() {
+        return state;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setState(Integer state) {
+        this.state = state;
     }
 
-    public Integer getNameId() {
-        return nameId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setNameId(Integer nameId) {
-        this.nameId = nameId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
+
+
 
     public String getUserName() {
         return userName;
