@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyan.dao.AdminsMapper">
+
+    <resultMap id="BaseResultMap"
+               type="com.ziyan.entity.Admins">
+        <id column="aId" jdbcType="INTEGER" property="aId" />
+        <result column="aName" jdbcType="VARCHAR"
+                property="aName" />
+        <result column="aPwd" jdbcType="VARCHAR"
+                property="aPwd" />
+        <result column="aTypeId" jdbcType="VARCHAR"
+                property="aTypeId" />
+    </resultMap>
+
+
+
+
+
+    <sql id="Base_Column_List">
+		aId, aName, aPwd,aTypeId
+	</sql>
+
+    <select id="checkUserByNameAndPass"
+            parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from admins
+        where aName=#{param1} AND aPwd=#{param2}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

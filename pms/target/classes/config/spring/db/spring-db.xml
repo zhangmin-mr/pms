@@ -16,8 +16,8 @@
           class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
         <property name="driverClassName" value="${driverClass}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${user}" />
+        <property name="url" value="${url}" />
+        <property name="username" value="${username}" />
         <property name="password" value="${password}" />
         <property name="filters" value="config" />
         <property name="connectionProperties" value="config.decrypt=true;config.decrypt.key=${publickey}" />
@@ -32,7 +32,6 @@
             </array>
         </property>
     </bean>
-
 
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
