@@ -1,10 +1,13 @@
 package com.ziyan.entity;
 
+/*
+* 职位类别
+* */
 public class Postcategory {
 	private int id;
-	private String pId;
-	private String pName;
-	private String pSalary;
+	private String pId;//职位编号
+	private String pName;//职位名称
+	private String pSalary;//职位工资
 	public int getId() {
 		return id;
 	}

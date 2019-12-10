@@ -1,14 +1,17 @@
 package com.ziyan.entity;
 
+/*
+* 员工调动
+* */
 public class Staffchange {
 	private int id;
-	private String sId;
-	private String pIdOld;
-	private String pIdNew;
-	private String dIdOld;
-	private String dIdNew;
-	private String sNature;
-	private String sRemark;
+	private String sId;//员工编号
+	private String pIdOld;//原职位编号
+	private String pIdNew;//调任职位编号
+	private String dIdOld;//原部门编号
+	private String dIdNew;//调任部门编号
+	private String sNature;//性质(长期或短期)
+	private String sRemark;//备注
 	public int getId() {
 		return id;
 	}

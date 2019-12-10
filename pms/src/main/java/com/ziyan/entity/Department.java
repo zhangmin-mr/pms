@@ -1,11 +1,14 @@
 package com.ziyan.entity;
 
+/*
+* 部门信息
+* */
 public class Department {
 	private int id;
-	private String dId;
-	private String dName;
-	private String dFunction;
-	private String dLeader;
+	private String dId;//部门编号
+	private String dName;//部门名称
+	private String dFunction;//部门职能
+	private String dLeader;//部门领导（经理）
 	public int getId() {
 		return id;
 	}

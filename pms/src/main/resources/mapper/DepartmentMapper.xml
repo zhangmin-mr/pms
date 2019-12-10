@@ -4,7 +4,8 @@
 
     <resultMap id="BaseResultMap"
                type="com.ziyan.entity.Department">
-        <id column="dId" jdbcType="INTEGER" property="dId"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="dId" jdbcType="VARCHAR" property="dId"/>
         <result column="dName" jdbcType="VARCHAR"
                 property="dName"/>
         <result column="dFunction" jdbcType="VARCHAR"
@@ -13,12 +14,26 @@
                 property="dLeader"/>
     </resultMap>
     <sql id="Base_Column_List">
-        dId,dName,dFunction,dLeader
+        id,dId,dName,dFunction,dLeader
     </sql>
+
 
     <select id="getDepartment" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from department
+    </select>
+
+    <select id="getDepartmentByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from department
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="selectDepartmentCount" resultType="int">
+        select count(*) from department
     </select>
 </mapper>

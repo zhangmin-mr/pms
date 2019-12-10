@@ -1,5 +1,8 @@
 package com.ziyan.entity;
 
+/*
+* 管理员类型
+* */
 public class Admintype {
     private int id;
     private int aTypeId;

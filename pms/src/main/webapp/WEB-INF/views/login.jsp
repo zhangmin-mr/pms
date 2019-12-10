@@ -3,7 +3,6 @@
 
 <%
     String path = request.getContextPath();
-
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -54,7 +53,7 @@
             </div>
         </div>
         <div id="footer">
-            <p>Copyright&copy;2011-2012 </p>
+            <p>Copyright&copy;2019 </p>
         </div>
     </div>
 </form>

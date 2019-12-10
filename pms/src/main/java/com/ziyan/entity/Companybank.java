@@ -1,11 +1,13 @@
 package com.ziyan.entity;
-
+/*
+* 公司银行账户
+* */
 public class Companybank {
 	private int id;
-	private String bId;
-	private String cBankType;
-	private String cBankName;
-	private String cRemark;
+	private String bId;//银行账号
+	private String cBankType;//银行账户类型
+	private String cBankName;//开户行
+	private String cRemark;//备注
 	public int getId() {
 		return id;
 	}

@@ -1,9 +1,12 @@
 package com.ziyan.entity;
 
+/*
+* 职位设置
+* */
 public class Postsetting {
 	private int id;
-	private String pId;
-	private String dId;
+	private String pId;//职位编号
+	private String dId;//部门编号
 	public int getId() {
 		return id;
 	}

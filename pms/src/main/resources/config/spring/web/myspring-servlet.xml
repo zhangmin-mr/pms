@@ -22,6 +22,29 @@
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 对所有请求都拦截，公共拦截器可以有多个 -->
+        <!-- <bean name="baseInterceptor" class="cn.zifangsky.interceptor.BaseInterceptor"
+            /> -->
+        <!-- <bean name="testInterceptor" class="cn.zifangsky.interceptor.TestInterceptor"
+            /> -->
+        <mvc:interceptor>
+            <!-- 对/test.html进行拦截 -->
+            <mvc:mapping path="/*" />
+            <!-- 放行的资源 -->
+            <mvc:exclude-mapping path="/login.do" />
+            <mvc:exclude-mapping path="/userLoginSubmit.do" />
+            <mvc:exclude-mapping path="/register.do" />
+            <mvc:exclude-mapping path="/registerSubmit.do" />
+            <mvc:exclude-mapping path="/AjaxUser.do" />
+            <!-- 特定请求的拦截器只能有一个 -->
+            <bean class="com.ziyan.interceptor.BaseInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
     <!-- 上传文件需定义 -->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

@@ -1,14 +1,20 @@
 package com.ziyan.entity;
 
 import java.util.Date;
-
+/*
+* 员工信息
+* */
 public class Staff {
 	private String id;
-	private String sId;
-	private String sName;
-	private String sSex;
-	private String sBirthday;
-	private String sPost;
+	private String sId;//员工编号
+	private String sName;//员工姓名
+	private String sSex;//员工性别
+	private String sBirthday;//员工出生日期；
+	private String sPost;//职位，岗位
+	private String sDepartment;//部门
+	private String sSalary;//工资
+	private Date sEntry;//入职时间
+	private String sIdentityId;//身份证号
 	public String getId() {
 		return id;
 	}
@@ -69,8 +75,5 @@ public class Staff {
 	public void setsIdentityId(String sIdentityId) {
 		this.sIdentityId = sIdentityId;
 	}
-	private String sDepartment;
-	private String sSalary;
-	private Date sEntry;
-	private String sIdentityId;
+
 }

@@ -1,18 +1,24 @@
 package com.ziyan.entity;
 
+/*
+* 公司基本信息表
+* */
 public class Company {
     private int id;
-    private String cName;
-    private String cNature;
-    private String cLegalPerson;
+    private String cName;//公司名称
+    private String cNature;//公司性质
+    private String cLegalPerson;//法人代表
+    private String cAddress;//公司地址
+    private String cTel;//公司电话
+    private String cEmail;//公司邮箱
     public String getcLegalPerson() {
         return cLegalPerson;
     }
     public void setcLegalPerson(String cLegalPerson) {
         this.cLegalPerson = cLegalPerson;
     }
-    private String cAddress;
-    private String cTel;
+
+
     public int getId() {
         return id;
     }
@@ -52,5 +58,5 @@ public class Company {
     public void setcEmail(String cEmail) {
         this.cEmail = cEmail;
     }
-    private String cEmail;
+
 }

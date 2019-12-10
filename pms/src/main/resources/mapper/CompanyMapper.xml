@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyan.dao.CompanyMapper">
+
+    <resultMap id="BaseResultMap"
+               type="com.ziyan.entity.Company">
+        <result column="cName" jdbcType="VARCHAR"
+                property="cName"/>
+        <result column="cNature" jdbcType="VARCHAR"
+                property="cNature"/>
+        <result column="cLegalPerson" jdbcType="VARCHAR"
+                property="cLegalPerson"/>
+        <result column="cAddress" jdbcType="VARCHAR"
+                property="cAddress"/>
+        <result column="cTel" jdbcType="VARCHAR"
+                property="cTel"/>
+        <result column="cEmail" jdbcType="VARCHAR"
+                property="cEmail"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+       cName,cNature,cLegalPerson,cAddress,cTel,cEmail
+    </sql>
+
+    <select id="getCompany" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from company
+    </select>
+</mapper>
