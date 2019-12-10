@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyan.dao.StaffMapper">
+
+    <resultMap id="BaseResultMap"
+               type="com.ziyan.entity.Staff">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="sId" jdbcType="VARCHAR" property="sId"/>
+        <result column="sName" jdbcType="VARCHAR"
+                property="sName"/>
+        <result column="sSex" jdbcType="VARCHAR"
+                property="sSex"/>
+        <result column="sBirthday" jdbcType="TIMESTAMP"
+                property="sBirthday"/>
+        <result column="sPost" jdbcType="VARCHAR"
+                property="sPost"/>
+        <result column="sDepartment" jdbcType="VARCHAR"
+                property="sDepartment"/>
+        <result column="sSalary" jdbcType="VARCHAR"
+                property="sSalary"/>
+        <result column="sEntry" jdbcType="TIMESTAMP"
+                property="sEntry"/>
+        <result column="sIdentityId" jdbcType="VARCHAR"
+                property="sIdentityId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,sId,sName,sSex,sBirthday,sPost,sDepartment,sSalary,sEntry,sIdentityId
+    </sql>
+
+
+    <select id="getDepartment" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from staff
+    </select>
+
+    <select id="getDepartmentByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from staff
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="selectDepartmentCount" resultType="int">
+        select count(*) from staff
+    </select>
+</mapper>
