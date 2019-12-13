@@ -23,7 +23,7 @@
 <div id="content">
 
     <table>
-        <tr id="content_00" >
+        <tr id="content_00">
             <td colspan="4" style="text-align:left; padding-left:5px;">公司基本信息</td>
         </tr>
         <c:forEach items="${company}" var="cp">
@@ -64,7 +64,7 @@
 <div id="content">
     <div class="right_tittle"><span>部门信息管理</span></div>
     <table>
-        <tr id="right_11" >
+        <tr id="right_11">
             <td>记录编号</td>
             <td>部门编号</td>
             <td>部门名称</td>
@@ -100,6 +100,10 @@
                             test="${requestScope.departmentPagemsg.currPage != 1}">
                         <div class="btn3"><a
                                 href="${pageContext.request.contextPath }/homeList.do?currentPage=1">[首页]</a>
+
+                        </div>
+
+                        <div class="btn3">
                             <a
                                     href="${pageContext.request.contextPath }/homeList.do?currentPage=${requestScope.departmentPagemsg.currPage-1}">[上一页]</a>
                         </div>
@@ -112,12 +116,14 @@
                         <div class="btn3">
                             <a
                                     href="${pageContext.request.contextPath }/homeList.do?currentPage=${requestScope.departmentPagemsg.currPage+1}">[下一页]</a>
+                        </div>
+                        <div class="btn3">
                             <a
                                     href="${pageContext.request.contextPath }/homeList.do?currentPage=${requestScope.departmentPagemsg.totalPage}">[尾页]</a>
                         </div>
                     </c:if>
 
-<%--                    <div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=6">最后一页</a></div>--%>
+                    <%--                    <div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=6">最后一页</a></div>--%>
 
                 </div>
             </td>

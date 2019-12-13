@@ -10,7 +10,7 @@
                 property="sName"/>
         <result column="sSex" jdbcType="VARCHAR"
                 property="sSex"/>
-        <result column="sBirthday" jdbcType="TIMESTAMP"
+        <result column="sBirthday" jdbcType="VARCHAR"
                 property="sBirthday"/>
         <result column="sPost" jdbcType="VARCHAR"
                 property="sPost"/>
@@ -28,13 +28,13 @@
     </sql>
 
 
-    <select id="getDepartment" resultMap="BaseResultMap">
+    <select id="getStaff" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from staff
     </select>
 
-    <select id="getDepartmentByPage" resultMap="BaseResultMap">
+    <select id="getStaffByPage" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from staff
@@ -43,7 +43,7 @@
         </if>
     </select>
 
-    <select id="selectDepartmentCount" resultType="int">
+    <select id="getStaffCount" resultType="int">
         select count(*) from staff
     </select>
 </mapper>

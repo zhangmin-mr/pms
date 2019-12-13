@@ -54,9 +54,9 @@
                             <ul>
                                 <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="<%=path %>/servlet/searchStaff"
                                                                         target="PageFrame">员工信息查询</a></li>
-                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="<%=path %>/servlet/gotoAddstaff"
+                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="staff/gotoAddstaff.do"
                                                                         target="PageFrame">员工入职登记</a></li>
-                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="<%=path %>/servlet/manageStaff"
+                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="staff/staffManager.do"
                                                                         target="PageFrame">员工信息管理</a></li>
 
                             </ul>

@@ -1,29 +1,33 @@
 package com.ziyan.entity;
 
-import org.joda.time.DateTime;
 
+
+
+
+import java.sql.Timestamp;
 import java.util.Date;
 
 /*
  * 员工信息
  * */
 public class Staff {
-    private String id;
+    private int id;
     private String sId;//员工编号
     private String sName;//员工姓名
     private String sSex;//员工性别
-    private DateTime sBirthday;//员工出生日期；
+    private String sBirthday;//员工出生日期；
     private String sPost;//职位，岗位
     private String sDepartment;//部门
     private String sSalary;//工资
-    private DateTime sEntry;//入职时间
+    private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
 
-    public String getId() {
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -75,19 +79,19 @@ public class Staff {
         this.sSalary = sSalary;
     }
 
-    public DateTime getsBirthday() {
+    public String getsBirthday() {
         return sBirthday;
     }
 
-    public void setsBirthday(DateTime sBirthday) {
+    public void setsBirthday(String sBirthday) {
         this.sBirthday = sBirthday;
     }
 
-    public DateTime getsEntry() {
+    public Timestamp getsEntry() {
         return sEntry;
     }
 
-    public void setsEntry(DateTime sEntry) {
+    public void setsEntry(Timestamp sEntry) {
         this.sEntry = sEntry;
     }
 

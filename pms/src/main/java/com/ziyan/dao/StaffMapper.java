@@ -10,6 +10,14 @@ import java.util.List;
 public interface StaffMapper {
     /**
      * 分页查询所有的员工
+     * @param map
+     * @return
      */
     List<Staff> getStaffByPage(HashMap<String, Object> map);
+
+    /**
+     * 员工总数
+     * @return
+     */
+    int getStaffCount();
 }

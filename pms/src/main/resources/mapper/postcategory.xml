@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ziyan.dao.PostcategoryMapper">
+
+    <resultMap id="BaseResultMap"
+               type="com.ziyan.entity.Postcategory">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="pId" jdbcType="VARCHAR" property="pId"/>
+        <result column="pName" jdbcType="VARCHAR"
+                property="pName"/>
+        <result column="pSalary" jdbcType="VARCHAR"
+                property="pSalary"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,pId,pName,pSalary
+    </sql>
+
+
+    <select id="getPostcategory" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from postcategory
+    </select>
+
+    <select id="getPostcategoryByPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from postcategory
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getPostcategoryCount" resultType="int">
+        select count(*) from postcategory
+    </select>
+</mapper>

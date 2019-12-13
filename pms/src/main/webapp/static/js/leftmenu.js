@@ -34,12 +34,12 @@ function opencur(menu,img){
     if(menu.style.display=="none")
     {
         menu.style.display="";
-        img.src='./static/images/icon_rig.gif';
+        img.src='./static/images/icon_down.gif';
 
     }
     else
     {
         menu.style.display="none";
-        img.src='./static/images/icon_down.gif';
+        img.src='./static/images/icon_rig.gif';
     }
 }
