@@ -46,4 +46,68 @@
     <select id="getStaffCount" resultType="int">
         select count(*) from staff
     </select>
+
+    <insert id="addStaff" parameterType="com.ziyan.entity.Staff">
+        insert into staff
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sId != null">
+               sId,
+            </if>
+            <if test="sName != null">
+                sName,
+            </if>
+            <if test="sSex != null">
+               sSex,
+            </if>
+            <if test="sBirthday != null">
+                sBirthday,
+            </if>
+            <if test="sPost != null">
+                sPost,
+            </if>
+            <if test="sDepartment != null">
+                sDepartment,
+            </if>
+            <if test="sSalary != null">
+                sSalary,
+            </if>
+            <if test="sEntry != null">
+                sEntry,
+            </if>
+            <if test="sIdentityId != null">
+                sIdentityId,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sId != null">
+                #{sId,jdbcType=VARCHAR},
+            </if>
+            <if test="sName != null">
+                #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sSex != null">
+                #{sSex,jdbcType=VARCHAR},
+            </if>
+            <if test="sBirthday != null">
+                #{sBirthday,jdbcType=VARCHAR},
+            </if>
+            <if test="sPost != null">
+                #{sPost,jdbcType=VARCHAR},
+            </if>
+            <if test="sDepartment != null">
+                #{sDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="sSalary != null">
+                #{sSalary,jdbcType=INTEGER},
+            </if>
+            <if test="sEntry != null">
+                #{sEntry,jdbcType=TIMESTAMP},
+            </if>
+            <if test="sIdentityId != null">
+                #{sIdentityId,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
 </mapper>

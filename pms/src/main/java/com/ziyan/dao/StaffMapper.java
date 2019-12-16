@@ -20,4 +20,11 @@ public interface StaffMapper {
      * @return
      */
     int getStaffCount();
+
+    /**
+     * 添加员工信息
+     * @param staff
+     * @return
+     */
+    int addStaff(Staff staff);
 }

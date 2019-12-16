@@ -11,4 +11,13 @@ public interface StaffService {
      * 分页查询所有员工
      */
     PageBean<Staff> getStaffByPage(int currentPage);
+
+    /**
+     * 添加员工信息
+     *
+     * @param staff
+     */
+    void addStaff(Staff staff);
+
+
 }

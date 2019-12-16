@@ -1,18 +1,22 @@
 package com.ziyan.controller;
 
+import com.ziyan.entity.Department;
 import com.ziyan.entity.PageBean;
 import com.ziyan.entity.Postcategory;
 import com.ziyan.entity.Staff;
+import com.ziyan.service.DepartmentService;
 import com.ziyan.service.PostcategoryService;
 import com.ziyan.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -24,6 +28,9 @@ public class StaffController {
     StaffService staffService;
     @Autowired
     PostcategoryService postcategoryService;
+    @Autowired
+    DepartmentService departmentService;
+
 
     @GetMapping("staffManager")
     public String staffList(Model model, @RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage){
@@ -33,8 +40,44 @@ public class StaffController {
     }
     @GetMapping("gotoAddstaff")
     public String gotoAddstaff(Model model){
-        List<Postcategory> postcategoryList=postcategoryService.getPostcategory();
+        List<Postcategory> postcategoryList=postcategoryService.getPostcategory();//获得所有职位
+       List<Department> departments= departmentService.getDepartment();
         model.addAttribute("post",postcategoryList);
+        model.addAttribute("departments",departments);
         return "staff/addstaff";
     }
+
+    @PostMapping("addStaff")
+    public String addStaff(Model model, HttpServletRequest request,Staff staff,String birthyear, String birthmon,String birthday){
+        request.getSession();
+
+
+        String birth=birthyear+"-"+birthmon;
+        birth+="-"+birthday;
+
+        String sId=null;
+        //获取工作入职时间
+        String job = request.getParameter("jobyear")+"-"+request.getParameter("jobmon");
+        job += "-"+request.getParameter("jobday");
+        Date birthDate =null;
+        Date jobDate = null;
+        Date sIdDate=null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMddHHmmss");
+        try {
+            birthDate = sdf.parse(birth);
+            jobDate = sdf.parse(job);
+            sId  = sdf2.format(new java.util.Date());
+
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+       //封装一个员工
+        Staff staff1=new Staff(sId,staff.getsName(),staff.getsSex(),birth,staff.getsPost(),staff.getsDepartment(),staff.getsSalary(),new Timestamp(jobDate.getTime()),staff.getsIdentityId());
+
+
+        return "";
+    }
 }
+

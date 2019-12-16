@@ -22,6 +22,21 @@ public class Staff {
     private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
 
+    public Staff() {
+    }
+
+    public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, String sDepartment, String sSalary, Timestamp sEntry, String sIdentityId) {
+        this.sId = sId;
+        this.sName = sName;
+        this.sSex = sSex;
+        this.sBirthday = sBirthday;
+        this.sPost = sPost;
+        this.sDepartment = sDepartment;
+        this.sSalary = sSalary;
+        this.sEntry = sEntry;
+        this.sIdentityId = sIdentityId;
+    }
+
 
     public int getId() {
         return id;

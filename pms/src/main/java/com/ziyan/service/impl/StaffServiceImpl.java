@@ -45,4 +45,9 @@ public class StaffServiceImpl implements StaffService {
         pageBean.setLists(staffList);
         return pageBean;
     }
+
+    @Override
+    public void addStaff(Staff staff) {
+        staffDao.addStaff(staff);
+    }
 }

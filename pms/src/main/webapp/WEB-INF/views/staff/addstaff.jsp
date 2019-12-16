@@ -13,17 +13,17 @@
     <meta http-equiv="description" content="This is my page">
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/static//css/main.css">
 
-    <script language="javascript">
-     // 对应的职位对对应的薪水
-        function gongzi() {
-            var obj = document.getElementById("sPost");
-            var index = obj.selectedIndex;
-            var obj2 = document.getElementById("sSalary");
-            obj2.selectedIndex = index;
-        }
+<%--    <script language="javascript">--%>
+<%--     // 对应的职位对对应的薪水--%>
+<%--        function gongzi() {--%>
+<%--            var obj = document.getElementById("sPost");--%>
+<%--            var index = obj.selectedIndex;--%>
+<%--            var obj2 = document.getElementById("sSalary");--%>
+<%--            obj2.selectedIndex = index;--%>
+<%--        }--%>
 
 
-    </script>
+<%--    </script>--%>
 </head>
 <body>
 
@@ -76,20 +76,34 @@
                 <td class="last2"><input name="sIdentityId" type="text" maxlength="18" style="width:345px;"/></td>
             </tr>
             <tr>
+                <td style="width:20%;">部门名称：</td>
+                <td class="last2" align="left">
+                    <select name="dDepartment" id="dDepartment" style="width:350px;" >
+                        <c:forEach items="${departments}" var="dp">
+                            <option value="${dp.dName}">${dp.dName}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
                 <td style="width:20%;">职位名称：</td>
                 <td class="last2" align="left">
-                    <select name="sPost" id="sPost" style="width:350px;" onchange="gongzi()">
+                    <select name="sPost" id="sPost" style="width:350px;" >
                         <c:forEach items="${post}" var="pt">
                             <option value="${pt.pName}">${pt.pName}</option>
                         </c:forEach>
                     </select>
                     &nbsp;对应职位薪水：
-                    <select name="sSalary" id="sSalary" style="width:100px;">
-                        <c:forEach items="${post}" var="pt">
-                            <option value="${pt.pSalary }"><c:out
-                                    value="${pt.pSalary }"></c:out></option>
-                        </c:forEach>
-                    </select>&nbsp;元人民币（月薪）
+<%--                    <select name="sSalary" id="sSalary" style="width:100px;">--%>
+<%--                        <c:forEach items="${post}" var="pt">--%>
+<%--                            <option value="${pt.pSalary }"><c:out--%>
+<%--                                    value="${pt.pSalary }"></c:out></option>--%>
+<%--                        </c:forEach>--%>
+<%--                    </select>&nbsp;--%>
+                    <input name="sSalary" type="text"/>
+
+                    元人民币（月薪）
                 </td>
             </tr>
             <tr>
