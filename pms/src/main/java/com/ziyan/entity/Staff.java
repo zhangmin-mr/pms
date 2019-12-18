@@ -17,12 +17,25 @@ public class Staff {
     private String sSex;//员工性别
     private String sBirthday;//员工出生日期；
     private String sPost;//职位，岗位
-    private String sDepartment;//部门
+    private String dId;
+    private Department sDepartment;//部门
     private String sSalary;//工资
     private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
 
     public Staff() {
+    }
+
+    public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, Department sDepartment            , String sSalary, Timestamp sEntry, String sIdentityId) {
+        this.sId = sId;
+        this.sName = sName;
+        this.sSex = sSex;
+        this.sBirthday = sBirthday;
+        this.sPost = sPost;
+        this.sDepartment=sDepartment;
+        this.sSalary = sSalary;
+        this.sEntry = sEntry;
+        this.sIdentityId = sIdentityId;
     }
 
     public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, String sDepartment, String sSalary, Timestamp sEntry, String sIdentityId) {
@@ -31,12 +44,19 @@ public class Staff {
         this.sSex = sSex;
         this.sBirthday = sBirthday;
         this.sPost = sPost;
-        this.sDepartment = sDepartment;
+        this.dId=sDepartment;
         this.sSalary = sSalary;
         this.sEntry = sEntry;
         this.sIdentityId = sIdentityId;
     }
 
+    public String getdId() {
+        return dId;
+    }
+
+    public void setdId(String dId) {
+        this.dId = dId;
+    }
 
     public int getId() {
         return id;
@@ -78,11 +98,11 @@ public class Staff {
         this.sPost = sPost;
     }
 
-    public String getsDepartment() {
+    public Department getsDepartment() {
         return sDepartment;
     }
 
-    public void setsDepartment(String sDepartment) {
+    public void setsDepartment(Department sDepartment) {
         this.sDepartment = sDepartment;
     }
 

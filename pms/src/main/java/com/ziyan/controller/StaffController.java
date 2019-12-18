@@ -7,6 +7,7 @@ import com.ziyan.entity.Staff;
 import com.ziyan.service.DepartmentService;
 import com.ziyan.service.PostcategoryService;
 import com.ziyan.service.StaffService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,7 @@ import java.util.List;
 @RequestMapping("staff/")
 @SessionAttributes(names = {"message"})
 public class StaffController {
-
+    private Logger log = Logger.getLogger(StaffController.class);
     @Autowired
     StaffService staffService;
     @Autowired
@@ -48,14 +49,16 @@ public class StaffController {
     }
 
     @PostMapping("addStaff")
-    public String addStaff(Model model, HttpServletRequest request,Staff staff,String birthyear, String birthmon,String birthday){
+    public String addStaff(Model model, HttpServletRequest request,String sDepartmentName,Staff staff,String birthyear, String birthmon,String birthday){
         request.getSession();
-
-
+        log.info("sDepartment:"+sDepartmentName);
+        Department department=departmentService.getDepartmentIdByName(sDepartmentName);//根据名字查到部门Id
+        String dId=department.getdId();
+        log.info("dId:"+dId);
         String birth=birthyear+"-"+birthmon;
         birth+="-"+birthday;
-
         String sId=null;
+
         //获取工作入职时间
         String job = request.getParameter("jobyear")+"-"+request.getParameter("jobmon");
         job += "-"+request.getParameter("jobday");
@@ -74,10 +77,9 @@ public class StaffController {
             e.printStackTrace();
         }
        //封装一个员工
-        Staff staff1=new Staff(sId,staff.getsName(),staff.getsSex(),birth,staff.getsPost(),staff.getsDepartment(),staff.getsSalary(),new Timestamp(jobDate.getTime()),staff.getsIdentityId());
-
-
-        return "";
+        Staff staff1=new Staff(sId,staff.getsName(),staff.getsSex(),birth,staff.getsPost(),dId,staff.getsSalary(),new Timestamp(jobDate.getTime()),staff.getsIdentityId());
+        staffService.addStaff(staff1);
+        return "staff/addstaff";
     }
 }
 

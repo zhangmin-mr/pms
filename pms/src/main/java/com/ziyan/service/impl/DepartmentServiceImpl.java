@@ -47,4 +47,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         pageBean.setLists(list);
         return pageBean;
     }
+
+    @Override
+    public Department getDepartmentIdByName(String dName) {
+        return departmentDao.getDepartmentIdByName(dName);
+    }
 }

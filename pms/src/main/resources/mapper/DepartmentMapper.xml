@@ -13,6 +13,20 @@
         <result column="dLeader" jdbcType="VARCHAR"
                 property="dLeader"/>
     </resultMap>
+
+    <resultMap id="BaseResultMap2"
+               type="com.ziyan.entity.Department">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="dId" jdbcType="VARCHAR" property="dId"/>
+        <result column="dName" jdbcType="VARCHAR"
+                property="dName"/>
+        <result column="dFunction" jdbcType="VARCHAR"
+                property="dFunction"/>
+        <result column="dLeader" jdbcType="VARCHAR"
+                property="dLeader"/>
+        <collection column="dId" property="staffList" resultMap="com.ziyan.dao.StaffMapper.BaseResultMap2"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id,dId,dName,dFunction,dLeader
     </sql>
@@ -22,6 +36,11 @@
         select
         <include refid="Base_Column_List"/>
         from department
+    </select>
+    <select id="getDepartmentIdByName" parameterType="java.lang.String"  resultMap="BaseResultMap">
+        select
+       dId
+        from department where dName=#{param1}
     </select>
 
     <select id="getDepartmentByPage" resultMap="BaseResultMap">

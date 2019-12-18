@@ -27,7 +27,7 @@
 </head>
 <body>
 
-<form name="form1" method="post" action="<%=path %>/servlet/addStaff">
+<form name="form1" method="post" action="addStaff.do">
     <div id="nav"><img src="${pageContext.servletContext.contextPath}/static/images/icon_home.gif"/>
         当前位置：主页 >> 员工信息管理 >> 员工入职登记
     </div>
@@ -53,7 +53,7 @@
                     <select id="birthyear" name="birthyear">
                         <%
                             int i = 0;
-                            for (i = 1970; i <= 2011; i++)
+                            for (i = 1970; i <= 2019; i++)
                                 out.print("<option value=" + i + ">" + i + "</option>");
                         %>
                     </select>年
@@ -78,7 +78,7 @@
             <tr>
                 <td style="width:20%;">部门名称：</td>
                 <td class="last2" align="left">
-                    <select name="dDepartment" id="dDepartment" style="width:350px;" >
+                    <select name="sDepartmentName" id="sDepartment" style="width:350px;" >
                         <c:forEach items="${departments}" var="dp">
                             <option value="${dp.dName}">${dp.dName}</option>
                         </c:forEach>
@@ -111,7 +111,7 @@
                 <td class="last2">
                     <select id="jobyear" name="jobyear">
                         <%
-                            for (i = 1970; i <= 2011; i++)
+                            for (i = 1970; i <= 2019; i++)
                                 out.print("<option value=" + i + ">" + i + "</option>");
                         %>
                     </select>年

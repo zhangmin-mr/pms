@@ -1,5 +1,7 @@
 package com.ziyan.entity;
 
+import java.util.List;
+
 /*
 * 部门信息
 * */
@@ -9,6 +11,7 @@ public class Department {
 	private String dName;//部门名称
 	private String dFunction;//部门职能
 	private String dLeader;//部门领导（经理）
+	private List<Staff> staffList;
 	public int getId() {
 		return id;
 	}
@@ -38,5 +41,13 @@ public class Department {
 	}
 	public void setdLeader(String dLeader) {
 		this.dLeader = dLeader;
+	}
+
+	public List<Staff> getStaffList() {
+		return staffList;
+	}
+
+	public void setStaffList(List<Staff> staffList) {
+		this.staffList = staffList;
 	}
 }

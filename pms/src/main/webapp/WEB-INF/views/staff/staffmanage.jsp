@@ -55,7 +55,7 @@
                                        pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${birthdate }"/></td>
                     <td><c:out value="${staff.sIdentityId}"></c:out></td>
                     <td><c:out value="${staff.sPost}"></c:out></td>
-                    <td><c:out value="${staff.sDepartment}"></c:out></td>
+                    <td><c:out value="${staff.sDepartment.dName}"></c:out></td>
                     <td><c:out value="${staff.sSalary}"></c:out></td>
                     <td><fmt:parseDate value="${staff.sEntry}" var="date"
                                        pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${date }"/></td>

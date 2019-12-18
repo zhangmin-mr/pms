@@ -18,5 +18,16 @@ public interface DepartmentMapper {
      */
     int selectDepartmentCount();
 
+    /**
+     * 查询部门
+     * @return
+     */
     List<Department> getDepartment();
+
+    /**
+     * 根据名字查询ID
+     * @param dName
+     * @return
+     */
+    Department getDepartmentIdByName(String dName);
 }

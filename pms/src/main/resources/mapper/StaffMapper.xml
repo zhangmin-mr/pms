@@ -14,8 +14,6 @@
                 property="sBirthday"/>
         <result column="sPost" jdbcType="VARCHAR"
                 property="sPost"/>
-        <result column="sDepartment" jdbcType="VARCHAR"
-                property="sDepartment"/>
         <result column="sSalary" jdbcType="VARCHAR"
                 property="sSalary"/>
         <result column="sEntry" jdbcType="TIMESTAMP"
@@ -23,8 +21,31 @@
         <result column="sIdentityId" jdbcType="VARCHAR"
                 property="sIdentityId"/>
     </resultMap>
+
+    <resultMap id="BaseResultMap2"
+               type="com.ziyan.entity.Staff">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="sId" jdbcType="VARCHAR" property="sId"/>
+        <result column="sName" jdbcType="VARCHAR"
+                property="sName"/>
+        <result column="sSex" jdbcType="VARCHAR"
+                property="sSex"/>
+        <result column="sBirthday" jdbcType="VARCHAR"
+                property="sBirthday"/>
+        <result column="sPost" jdbcType="VARCHAR"
+                property="sPost"/>
+        <result column="sSalary" jdbcType="VARCHAR"
+                property="sSalary"/>
+        <result column="sEntry" jdbcType="TIMESTAMP"
+                property="sEntry"/>
+        <result column="sIdentityId" jdbcType="VARCHAR"
+                property="sIdentityId"/>
+        <association column="dId" property="sDepartment" resultMap="com.ziyan.dao.DepartmentMapper.BaseResultMap"/>
+    </resultMap>
+
+
     <sql id="Base_Column_List">
-        id,sId,sName,sSex,sBirthday,sPost,sDepartment,sSalary,sEntry,sIdentityId
+        id,sId,sName,sSex,sBirthday,sPost,sSalary,sEntry,sIdentityId
     </sql>
 
 
@@ -34,10 +55,25 @@
         from staff
     </select>
 
-    <select id="getStaffByPage" resultMap="BaseResultMap">
+    <select id="getStaffByPage" resultMap="BaseResultMap2">
         select
-        <include refid="Base_Column_List"/>
-        from staff
+        s.sId,
+        s.sName,
+        s.sSex,
+        s.sBirthday,
+        s.sPost,
+        s.sSalary,
+        s.sEntry,
+        s.sIdentityId,
+        d.dId,
+        d.dName,
+        d.dFunction,
+        d.dLeader
+
+        from staff s
+        LEFT JOIN
+        department d ON s.dId=d.dId
+
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
@@ -51,13 +87,13 @@
         insert into staff
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sId != null">
-               sId,
+                sId,
             </if>
             <if test="sName != null">
                 sName,
             </if>
             <if test="sSex != null">
-               sSex,
+                sSex,
             </if>
             <if test="sBirthday != null">
                 sBirthday,
@@ -65,8 +101,8 @@
             <if test="sPost != null">
                 sPost,
             </if>
-            <if test="sDepartment != null">
-                sDepartment,
+            <if test="dId != null">
+                dId,
             </if>
             <if test="sSalary != null">
                 sSalary,
@@ -95,8 +131,8 @@
             <if test="sPost != null">
                 #{sPost,jdbcType=VARCHAR},
             </if>
-            <if test="sDepartment != null">
-                #{sDepartment,jdbcType=VARCHAR},
+            <if test="dId != null">
+                #{dId,jdbcType=VARCHAR},
             </if>
             <if test="sSalary != null">
                 #{sSalary,jdbcType=INTEGER},

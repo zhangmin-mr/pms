@@ -13,4 +13,11 @@ public interface DepartmentService {
      * 分页查询所有部门
      * */
     PageBean<Department> getDepartmentByPage(int currentPage);
+
+    /**
+     * 根据名字查询ID
+     * @param dName
+     * @return
+     */
+    Department getDepartmentIdByName(String dName);
 }
