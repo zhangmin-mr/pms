@@ -15,6 +15,19 @@
     </resultMap>
 
     <resultMap id="BaseResultMap2"
+                              type="com.ziyan.entity.Department">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <id column="dId" jdbcType="VARCHAR" property="dId"/>
+    <result column="dName" jdbcType="VARCHAR"
+            property="dName"/>
+    <result column="dFunction" jdbcType="VARCHAR"
+            property="dFunction"/>
+    <result column="dLeader" jdbcType="VARCHAR"
+            property="dLeader"/>
+    <collection column="dId" property="staffList" resultMap="com.ziyan.dao.StaffMapper.BaseResultMap2"/>
+</resultMap>
+
+    <resultMap id="BaseResultMap3"
                type="com.ziyan.entity.Department">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <id column="dId" jdbcType="VARCHAR" property="dId"/>
@@ -24,7 +37,7 @@
                 property="dFunction"/>
         <result column="dLeader" jdbcType="VARCHAR"
                 property="dLeader"/>
-        <collection column="dId" property="staffList" resultMap="com.ziyan.dao.StaffMapper.BaseResultMap2"/>
+        <collection column="pId" property="postcategoryList" resultMap="com.ziyan.dao.PostcategoryMapper.BaseResultMap"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -43,7 +56,7 @@
         from department where dName=#{param1}
     </select>
 
-    <select id="getDepartmentByPage" resultMap="BaseResultMap">
+    <select id="getDepartmentByPage" parameterType="Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from department

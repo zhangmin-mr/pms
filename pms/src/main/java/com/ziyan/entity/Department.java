@@ -11,7 +11,17 @@ public class Department {
 	private String dName;//部门名称
 	private String dFunction;//部门职能
 	private String dLeader;//部门领导（经理）
-	private List<Staff> staffList;
+	private List<Staff> staffList;//员工
+	private List<Postcategory> postcategoryList;//职位
+
+	public List<Postcategory> getPostcategoryList() {
+		return postcategoryList;
+	}
+
+	public void setPostcategoryList(List<Postcategory> postcategoryList) {
+		this.postcategoryList = postcategoryList;
+	}
+
 	public int getId() {
 		return id;
 	}

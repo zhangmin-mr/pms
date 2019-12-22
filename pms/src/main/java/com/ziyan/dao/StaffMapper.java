@@ -34,4 +34,11 @@ public interface StaffMapper {
      * @return
      */
     List<Staff> selectStaffByNameOrId(Staff staff);
+
+    /**
+     *
+     * @param sId
+     * @return
+     */
+    Staff getStaffById(String sId);
 }

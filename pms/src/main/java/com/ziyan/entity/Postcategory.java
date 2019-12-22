@@ -1,5 +1,7 @@
 package com.ziyan.entity;
 
+import java.util.List;
+
 /*
 * 职位类别
 * */
@@ -8,6 +10,16 @@ public class Postcategory {
 	private String pId;//职位编号
 	private String pName;//职位名称
 	private String pSalary;//职位工资
+	private List<Department> departmentList;
+
+	public List<Department> getDepartmentList() {
+		return departmentList;
+	}
+
+	public void setDepartmentList(List<Department> departmentList) {
+		this.departmentList = departmentList;
+	}
+
 	public int getId() {
 		return id;
 	}

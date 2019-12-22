@@ -70,6 +70,12 @@ public class StaffController {
         return "staff/staffmanage";
     }
 
+    @GetMapping("gotoStaffupdate")
+    String gotoStaffupdate(String sId){
+        Staff staff=null;
+
+        return "staff/staffupdate";
+    }
 
     @GetMapping("gotoAddstaff")
     public String gotoAddstaff(Model model){

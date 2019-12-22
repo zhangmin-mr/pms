@@ -40,7 +40,7 @@
                 property="sEntry"/>
         <result column="sIdentityId" jdbcType="VARCHAR"
                 property="sIdentityId"/>
-        <association column="dId" property="sDepartment" resultMap="com.ziyan.dao.DepartmentMapper.BaseResultMap"/>
+        <association column="dId" property="sDepartment" resultMap="com.ziyan.dao.DepartmentMapper.BaseResultMap3"/>
     </resultMap>
 
 
@@ -55,9 +55,8 @@
         from staff
     </select>
 
-    <select id="getStaffByPage" resultMap="BaseResultMap2">
-        select
-        s.id,
+    <select id="getStaffByPage" parameterType="Map" resultMap="BaseResultMap2">
+        Select  s.id,
         s.sId,
         s.sName,
         s.sSex,
@@ -69,20 +68,23 @@
         d.dId,
         d.dName,
         d.dFunction,
-        d.dLeader
-
+        d.dLeader,
+        pt.pName
         from staff s
         LEFT JOIN
         department d ON s.dId=d.dId
-
+        LEFT JOIN
+        postsetting ps on ps.dId=d.dId
+        left Join
+        postcategory pt ON ps.pId = pt.pId
+        where 1=1 and pt.pId=s.sPost
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
     </select>
 
     <select id="selectStaffByNameOrId" parameterType="com.ziyan.entity.Staff" resultMap="BaseResultMap2">
-        select
-        s.id,
+        Select  s.id,
         s.sId,
         s.sName,
         s.sSex,
@@ -94,11 +96,16 @@
         d.dId,
         d.dName,
         d.dFunction,
-        d.dLeader
+        d.dLeader,
+        pt.pName
         from staff s
         LEFT JOIN
         department d ON s.dId=d.dId
-        where 1=1
+        LEFT JOIN
+        postsetting ps on ps.dId=d.dId
+        left Join
+        postcategory pt ON ps.pId = pt.pId
+        where 1=1 and pt.pId=s.sPost
         <if test="sName != null and sName != '' ">
             and s.sName like concat('%',#{sName,jdbcType=VARCHAR},'%')
         </if>
@@ -110,6 +117,32 @@
 
     <select id="getStaffCount" resultType="int">
         select count(*) from staff
+    </select>
+
+    <select id="getStaffById" parameterType="java.lang.String" resultMap="BaseResultMap2">
+   Select  s.id,
+        s.sId,
+        s.sName,
+        s.sSex,
+        s.sBirthday,
+        s.sPost,
+        s.sSalary,
+        s.sEntry,
+        s.sIdentityId,
+        d.dId,
+        d.dName,
+        d.dFunction,
+        d.dLeader,
+        pt.pName
+        from staff s
+        LEFT JOIN
+        department d ON s.dId=d.dId
+        LEFT JOIN
+        postsetting ps on ps.dId=d.dId
+        left Join
+        postcategory pt ON ps.pId = pt.pId
+        where 1=1 and pt.pId=s.sPost and s.sId=#{param1}
+
     </select>
 
 

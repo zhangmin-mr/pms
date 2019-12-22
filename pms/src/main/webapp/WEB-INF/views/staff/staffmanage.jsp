@@ -27,7 +27,7 @@
         <select name="type">
             <option value="sId" selected="selected">员工编号</option>
             <option value="sName">员工姓名</option>
-        </select> &nbsp;<input  type="submit" value="搜索" style="cursor:hand;"/>&nbsp;&nbsp;
+        </select> &nbsp;<input type="submit" value="搜索" style="cursor:hand;"/>&nbsp;&nbsp;
     </div>
     <div id="content">
         <div class="right_tittle"><span>员工信息管理</span></div>
@@ -54,7 +54,10 @@
                     <td><fmt:parseDate value="${staff.sBirthday}" var="birthdate"
                                        pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${birthdate }"/></td>
                     <td><c:out value="${staff.sIdentityId}"></c:out></td>
-                    <td><c:out value="${staff.sPost}"></c:out></td>
+                    <td><c:forEach items="${staff.sDepartment.postcategoryList}" var="postcategory">
+                        <c:out value="${postcategory.pName}"></c:out>
+                    </c:forEach>
+                    </td>
                     <td><c:out value="${staff.sDepartment.dName}"></c:out></td>
                     <td><c:out value="${staff.sSalary}"></c:out></td>
                     <td><fmt:parseDate value="${staff.sEntry}" var="date"
@@ -67,39 +70,43 @@
                     </td>
                 </tr>
             </c:forEach>
-            <tr>
-                <td colspan="11" height="40px">
-                    <div id="paging">
-                        <div class="btn4">共${requestScope.totalCount}条</div>
-                        <div class="btn4">第${requestScope.currPage}/${requestScope.totalPage}页
+            <c:if test="${requestScope.currPage != null}">
+                <tr>
+                    <td colspan="11" height="40px">
+                        <div id="paging">
+                            <div class="btn4">共${requestScope.totalCount}条</div>
+                            <div class="btn4">第${requestScope.currPage}/${requestScope.totalPage}页
+                            </div>
+
+
+                            <c:if
+                                    test="${requestScope.currPage != 1 && requestScope.currPage != null}">
+                                <div class="btn3"><a
+                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=1">[首页]</a>
+                                    <a
+                                            href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
+                                </div>
+                            </c:if>
+
+
+                            <c:if
+                                    test="${requestScope.currPage != requestScope.totalPage && requestScope.currPage != null}">
+                                <div class="btn3"><a
+                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage+1}">[下一页]</a>
+                                </div>
+
+                                <div class="btn3"><a
+                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.totalPage}">[尾页]</a>
+                                </div>
+                            </c:if>
+
+
                         </div>
 
 
-                        <c:if
-                                test="${requestScope.currPage != 1}">
-                            <div class="btn3"><a
-                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=1">[首页]</a>
-                                <a
-                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
-                            </div>
-                        </c:if>
-
-
-
-
-                        <c:if
-                                test="${requestScope.currPage != requestScope.totalPage}">
-                            <div class="btn3"><a
-                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage+1}">[下一页]</a></div>
-
-                            <div class="btn3"><a
-                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.totalPage}">[尾页]</a></div>
-                        </c:if>
-
-
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            </c:if>
         </table>
     </div>
 </form>

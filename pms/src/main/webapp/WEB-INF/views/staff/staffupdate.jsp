@@ -11,7 +11,7 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="<%=path %>/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/static/css/main.css">
 	
 	<script language="javascript">
 	function gongzi(){
@@ -27,11 +27,11 @@
 <body >
 
 <form name="form1" method="post" action="<%=path %>/servlet/updateStaff" >
- <div id="nav"><img src="<%=path %>/images/icon_home.gif" />
- 当前位置：主页 >> 员工信息管理 >> 员工入职登记
+ <div id="nav"><img src="${pageContext.servletContext.contextPath}/static/images/icon_home.gif" />
+ 当前位置：主页 >> 员工信息管理 >> 员工基本信息更改
  </div>
  <div id="content">
- <div class="right_tittle"><span>员工入职登记</span></div>
+ <div class="right_tittle"><span>员工基本信息更改</span></div>
  <table>
  <tr><td>员工编号：</td><td class="last2"><input name="sId" type="text" readonly="readonly" style="background-color:#c4eaf3; width:345px;" value="${sf.sId }"/></td></tr>
  <tr><td>员工姓名：</td><td class="last2"><input name="sName" type="text" style="width:345px;" value="${sf.sName }"/></td></tr>

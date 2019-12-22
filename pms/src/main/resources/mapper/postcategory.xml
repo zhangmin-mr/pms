@@ -23,7 +23,7 @@
         from postcategory
     </select>
 
-    <select id="getPostcategoryByPage" resultMap="BaseResultMap">
+    <select id="getPostcategoryByPage" parameterType="Map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from postcategory
