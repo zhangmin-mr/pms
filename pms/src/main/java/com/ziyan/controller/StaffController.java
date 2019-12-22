@@ -35,10 +35,42 @@ public class StaffController {
 
     @GetMapping("staffManager")
     public String staffList(Model model, @RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage){
+       log.info("doget");
         PageBean<Staff> staffByPage=staffService.getStaffByPage(currentPage);
+        model.addAttribute("staffByPage",staffByPage.getLists());
+        model.addAttribute("totalCount",staffByPage.getTotalCount());
+        model.addAttribute("currPage",staffByPage.getCurrPage());
+        model.addAttribute("totalPage",staffByPage.getTotalPage());
+        return "staff/staffmanage";
+    }
+
+    /**
+     * 员工管理
+     * @param model
+     * @param type
+     * @param search
+     * @return
+     */
+    @PostMapping("staffManager")
+    public String staffManager(Model model,String type,String search){
+       log.info("dopost");
+       log.info("type:"+type);
+        Staff staff=new Staff();
+        if(type.equals("sId")){
+            log.info("sId:"+search);
+           staff.setsId(search);
+       }else if(type.equals("sName")){
+            log.info("sName:"+search);
+            staff.setsName(search);
+        }
+
+       List<Staff> staffByPage= staffService.selectStaffByNameOrId(staff);
+
         model.addAttribute("staffByPage",staffByPage);
         return "staff/staffmanage";
     }
+
+
     @GetMapping("gotoAddstaff")
     public String gotoAddstaff(Model model){
         List<Postcategory> postcategoryList=postcategoryService.getPostcategory();//获得所有职位

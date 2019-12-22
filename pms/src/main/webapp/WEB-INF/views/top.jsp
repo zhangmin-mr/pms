@@ -40,7 +40,7 @@
     </div>
         <div style="float:right;  margin-right:10px; height:25px; font-size:12px;  vertical-align:middle;">
         <img src="${pageContext.servletContext.contextPath}/static/images/icon_home.png" /> <a style="text-decoration:none;" href="<%=path %>/servlet/getHome" target="PageFrame">主页</a>
-        <img src="${pageContext.servletContext.contextPath}/static/images/icon_logout2.png" /><a style="text-decoration:none;"  href="login.jsp" target="_parent">注销</a>
+        <img src="${pageContext.servletContext.contextPath}/static/images/icon_logout2.png" /><a style="text-decoration:none;"  href="login_out.do" target="_parent">注销</a>
         <img src="${pageContext.servletContext.contextPath}/static/images/icon_help.png" />帮助文档
         </div>
     </div>

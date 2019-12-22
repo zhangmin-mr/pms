@@ -7,18 +7,21 @@ import com.ziyan.entity.PageBean;
 import com.ziyan.service.AdminsService;
 import com.ziyan.service.CompanyService;
 import com.ziyan.service.DepartmentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 @SessionAttributes(names = {"message"})
 public class LoginController {
-
+    private Logger log = Logger.getLogger(LoginController.class);
     @Autowired
     private AdminsService adminsService;
     @Autowired
@@ -38,8 +41,9 @@ public class LoginController {
     }
 
     @PostMapping("userLoginSubmit")
-    public String main(String userName, String passWord, Model model, @RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage) {
+    public String main(HttpServletRequest request, String userName, String passWord, Model model, @RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage) {
 
+        HttpSession session = request.getSession();
         System.out.println("username=" + userName + "password=" + passWord);
         System.out.println("longin,,,,,,,,,,");
         Admins admins = null;
@@ -50,10 +54,11 @@ public class LoginController {
             PageBean<Department> departmentPagemsg = departmentService.getDepartmentByPage(currentPage);//分页获得公司部门信息
             model.addAttribute("departmentPagemsg", departmentPagemsg);
             model.addAttribute("company", company);
+            session.setAttribute("name",admins.getaName());
             return "index";
 
         }
-        return "login";
+        return "redirect:login";
     }
 
     @GetMapping("homeList")
@@ -66,12 +71,20 @@ public class LoginController {
     }
 
     @GetMapping("top")
-    public String indexTop(){
+    public String indexTop() {
         return "top";
     }
 
     @GetMapping("leftmenu")
-    public String indexLeft(){
+    public String indexLeft() {
         return "leftmenu";
+    }
+
+    @GetMapping(value = "login_out")
+    public String loginOut(HttpServletRequest request) {
+        HttpSession session=request.getSession();
+		session.invalidate();
+        log.info("用户注销");
+        return "redirect:/login.do";
     }
 }

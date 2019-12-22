@@ -5,6 +5,7 @@ import com.ziyan.entity.PageBean;
 import com.ziyan.entity.Staff;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface StaffService {
     /**
@@ -19,5 +20,10 @@ public interface StaffService {
      */
     void addStaff(Staff staff);
 
-
+    /**
+     * 按名字或Id查询
+     * @param staff
+     * @return
+     */
+    List<Staff> selectStaffByNameOrId(Staff staff);
 }

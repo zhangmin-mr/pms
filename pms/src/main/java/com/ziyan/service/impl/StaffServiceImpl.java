@@ -50,4 +50,10 @@ public class StaffServiceImpl implements StaffService {
     public void addStaff(Staff staff) {
         staffDao.addStaff(staff);
     }
+
+    @Override
+    public List<Staff> selectStaffByNameOrId(Staff staff) {
+        System.out.println(staff);
+        return staffDao.selectStaffByNameOrId(staff);
+    }
 }

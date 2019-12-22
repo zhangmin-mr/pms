@@ -27,4 +27,11 @@ public interface StaffMapper {
      * @return
      */
     int addStaff(Staff staff);
+
+    /**
+     * 按名字或Id查询
+     * @param staff
+     * @return
+     */
+    List<Staff> selectStaffByNameOrId(Staff staff);
 }

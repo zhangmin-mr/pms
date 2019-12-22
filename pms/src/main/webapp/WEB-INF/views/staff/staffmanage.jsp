@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/static/css/main.css">
 </head>
 <body>
-<form name="form1" method="post" action="<%=path %>/servlet/manageStaff">
+<form name="form1" method="post" action="staffManager.do">
 
     <div id="nav"><img src="${pageContext.servletContext.contextPath}/static/images/icon_home.gif"/>
         当前位置：主页 >> 员工信息管理 >> 员工信息管理
@@ -27,7 +27,7 @@
         <select name="type">
             <option value="sId" selected="selected">员工编号</option>
             <option value="sName">员工姓名</option>
-        </select> &nbsp;<input name="search" type="submit" value="搜索" style="cursor:hand;"/>&nbsp;&nbsp;
+        </select> &nbsp;<input  type="submit" value="搜索" style="cursor:hand;"/>&nbsp;&nbsp;
     </div>
     <div id="content">
         <div class="right_tittle"><span>员工信息管理</span></div>
@@ -45,7 +45,7 @@
                 <td>入职时间</td>
                 <td class="last">管理操作</td>
             </tr>
-            <c:forEach items="${requestScope.staffByPage.lists}" var="staff">
+            <c:forEach items="${requestScope.staffByPage}" var="staff">
                 <tr>
                     <td><c:out value="${staff.id}"></c:out></td>
                     <td><c:out value="${staff.sId}"></c:out></td>
@@ -70,17 +70,17 @@
             <tr>
                 <td colspan="11" height="40px">
                     <div id="paging">
-                        <div class="btn4">共${requestScope.staffByPage.totalCount}条</div>
-                        <div class="btn4">第${requestScope.staffByPage.currPage}/${requestScope.staffByPage.totalPage}页
+                        <div class="btn4">共${requestScope.totalCount}条</div>
+                        <div class="btn4">第${requestScope.currPage}/${requestScope.totalPage}页
                         </div>
 
 
                         <c:if
-                                test="${requestScope.staffByPage.currPage != 1}">
+                                test="${requestScope.currPage != 1}">
                             <div class="btn3"><a
                                     href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=1">[首页]</a>
                                 <a
-                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.staffByPage.currPage-1}">[上一页]</a>
+                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
                             </div>
                         </c:if>
 
@@ -88,12 +88,12 @@
 
 
                         <c:if
-                                test="${requestScope.staffByPage.currPage != requestScope.staffByPage.totalPage}">
+                                test="${requestScope.currPage != requestScope.totalPage}">
                             <div class="btn3"><a
-                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.staffByPage.currPage+1}">[下一页]</a></div>
+                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage+1}">[下一页]</a></div>
 
                             <div class="btn3"><a
-                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.staffByPage.totalPage}">[尾页]</a></div>
+                                    href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.totalPage}">[尾页]</a></div>
                         </c:if>
 
 

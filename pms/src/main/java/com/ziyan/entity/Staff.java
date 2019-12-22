@@ -23,6 +23,23 @@ public class Staff {
     private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
 
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "id=" + id +
+                ", sId='" + sId + '\'' +
+                ", sName='" + sName + '\'' +
+                ", sSex='" + sSex + '\'' +
+                ", sBirthday='" + sBirthday + '\'' +
+                ", sPost='" + sPost + '\'' +
+                ", dId='" + dId + '\'' +
+                ", sDepartment=" + sDepartment +
+                ", sSalary='" + sSalary + '\'' +
+                ", sEntry=" + sEntry +
+                ", sIdentityId='" + sIdentityId + '\'' +
+                '}';
+    }
+
     public Staff() {
     }
 

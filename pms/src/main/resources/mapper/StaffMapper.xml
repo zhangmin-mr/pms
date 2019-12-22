@@ -57,6 +57,7 @@
 
     <select id="getStaffByPage" resultMap="BaseResultMap2">
         select
+        s.id,
         s.sId,
         s.sName,
         s.sSex,
@@ -79,9 +80,38 @@
         </if>
     </select>
 
+    <select id="selectStaffByNameOrId" parameterType="com.ziyan.entity.Staff" resultMap="BaseResultMap2">
+        select
+        s.id,
+        s.sId,
+        s.sName,
+        s.sSex,
+        s.sBirthday,
+        s.sPost,
+        s.sSalary,
+        s.sEntry,
+        s.sIdentityId,
+        d.dId,
+        d.dName,
+        d.dFunction,
+        d.dLeader
+        from staff s
+        LEFT JOIN
+        department d ON s.dId=d.dId
+        where 1=1
+        <if test="sName != null and sName != '' ">
+            and s.sName like concat('%',#{sName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="sId != null and sId != '' ">
+           and s.sId = #{sId,jdbcType=VARCHAR}
+        </if>
+
+    </select>
+
     <select id="getStaffCount" resultType="int">
         select count(*) from staff
     </select>
+
 
     <insert id="addStaff" parameterType="com.ziyan.entity.Staff">
         insert into staff
