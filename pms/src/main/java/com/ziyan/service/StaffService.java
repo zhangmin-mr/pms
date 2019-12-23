@@ -12,6 +12,12 @@ public interface StaffService {
      * 分页查询所有员工
      */
     PageBean<Staff> getStaffByPage(int currentPage);
+    /**
+     *
+     * @param sId
+     * @return
+     */
+    Staff getStaffById(String sId);
 
     /**
      * 添加员工信息

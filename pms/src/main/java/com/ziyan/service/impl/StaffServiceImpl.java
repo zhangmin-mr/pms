@@ -47,6 +47,11 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
+    public Staff getStaffById(String sId) {
+        return staffDao.getStaffById(sId);
+    }
+
+    @Override
     public void addStaff(Staff staff) {
         staffDao.addStaff(staff);
     }

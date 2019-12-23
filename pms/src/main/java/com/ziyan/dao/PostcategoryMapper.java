@@ -8,4 +8,11 @@ import java.util.List;
 @Repository("postcategoryDao")
 public interface PostcategoryMapper {
     List<Postcategory> getPostcategory();
+
+    /**
+     * 查询职位Id根据职位名字
+     * @param pName
+     * @return
+     */
+    Postcategory getPostcategoryIdByName(String pName);
 }

@@ -19,4 +19,9 @@ public class PostcategoryServiceImpl implements PostcategoryService {
     public List<Postcategory> getPostcategory() {
         return postcategoryDao.getPostcategory();
     }
+
+    @Override
+    public Postcategory getPostcategoryIdByName(String pName) {
+        return postcategoryDao.getPostcategoryIdByName(pName);
+    }
 }

@@ -32,6 +32,12 @@
         </if>
     </select>
 
+    <select id="getPostcategoryIdByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from postcategory where 1=1 pName=#{param1}
+    </select>
+
     <select id="getPostcategoryCount" resultType="int">
         select count(*) from postcategory
     </select>

@@ -64,7 +64,7 @@
                                        pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${date }"/></td>
                     <td width="100px">
                         <div class="btn2"><a
-                                href="<%=path %>/servlet/gotoUpdatestaff?sId=<c:out value="${staff.sId}"></c:out>">更改</a>
+                                href="gotoStaffupdate.do?sId=<c:out value="${staff.sId}"></c:out>">更改</a>
                         </div>
                         <div class="btn2"><a href="<%=path %>/servlet/delStaff?sId=${staff.sId}">删除</a></div>
                     </td>
