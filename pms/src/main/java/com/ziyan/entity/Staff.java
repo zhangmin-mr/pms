@@ -16,8 +16,8 @@ public class Staff {
     private String sName;//员工姓名
     private String sSex;//员工性别
     private String sBirthday;//员工出生日期；
-    private String sPost;//职位，岗位
-    private String dId;
+    private String sPost;//职位，岗位编号
+    private String dId;//部门编号
     private Department sDepartment;//部门
     private String sSalary;//工资
     private Timestamp sEntry;//入职时间
@@ -43,7 +43,7 @@ public class Staff {
     public Staff() {
     }
 
-    public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, Department sDepartment            , String sSalary, Timestamp sEntry, String sIdentityId) {
+    public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, Department sDepartment   , String sSalary, Timestamp sEntry, String sIdentityId) {
         this.sId = sId;
         this.sName = sName;
         this.sSex = sSex;

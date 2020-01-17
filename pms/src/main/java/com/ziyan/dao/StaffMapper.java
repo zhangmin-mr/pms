@@ -16,6 +16,13 @@ public interface StaffMapper {
     List<Staff> getStaffByPage(HashMap<String, Object> map);
 
     /**
+     * 修改员工
+     * @param staff
+     * @return
+     */
+    int updateStaff(Staff staff);
+
+    /**
      * 员工总数
      * @return
      */

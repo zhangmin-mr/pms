@@ -145,6 +145,41 @@
 
     </select>
 
+    <update id="updateStaff" parameterType="com.ziyan.entity.Staff">
+        update staff
+        <set>
+            <if test="sId!=null">
+                sId=#{sId,jdbcType=VARCHAR},
+            </if>
+            <if test="sName!=null">
+                sName=#{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sSex!=null">
+                sSex=#{sSex,jdbcType=VARCHAR},
+            </if>
+            <if test="sBirthday!=null">
+                sBirthday=#{sBirthday,jdbcType=VARCHAR},
+            </if>
+            <if test="sPost!=null">
+                sPost=#{sPost,jdbcType=VARCHAR},
+            </if>
+            <if test="dId!=null">
+                dId=#{dId,jdbcType=VARCHAR},
+            </if>
+            <if test="sSalary!=null">
+                sSalary=#{sSalary,jdbcType=VARCHAR},
+            </if>
+
+            <if test="sEntry!=null">
+                sEntry=#{sEntry,jdbcType=TIMESTAMP},
+            </if>
+           <if test="sIdentityId!=null">
+               sIdentityId=#{sIdentityId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE sId=#{sId,jdbcType=VARCHAR}
+    </update>
+
 
     <insert id="addStaff" parameterType="com.ziyan.entity.Staff">
         insert into staff
