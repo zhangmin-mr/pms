@@ -55,6 +55,8 @@ public class Staff {
         this.sIdentityId = sIdentityId;
     }
 
+
+
     public Staff(String sId, String sName, String sSex, String sBirthday, String sPost, String sDepartment, String sSalary, Timestamp sEntry, String sIdentityId) {
         this.sId = sId;
         this.sName = sName;

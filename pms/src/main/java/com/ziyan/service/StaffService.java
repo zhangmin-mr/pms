@@ -20,6 +20,13 @@ public interface StaffService {
     Staff getStaffById(String sId);
 
     /**
+     * 修改员工信息
+     * @param staff
+     * @return
+     */
+    int updateStaff(Staff staff);
+
+    /**
      * 添加员工信息
      *
      * @param staff

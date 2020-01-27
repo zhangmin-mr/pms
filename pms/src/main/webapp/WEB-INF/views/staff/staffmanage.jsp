@@ -82,9 +82,9 @@
                             <c:if
                                     test="${requestScope.currPage != 1 && requestScope.currPage != null}">
                                 <div class="btn3"><a
-                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=1">[首页]</a>
+                                        href="${pageContext.request.contextPath }/staff/gotoStaffManager.do?currentPage=1">[首页]</a>
                                     <a
-                                            href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
+                                            href="${pageContext.request.contextPath }/staff/gotoStaffManager.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
                                 </div>
                             </c:if>
 
@@ -92,11 +92,11 @@
                             <c:if
                                     test="${requestScope.currPage != requestScope.totalPage && requestScope.currPage != null}">
                                 <div class="btn3"><a
-                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.currPage+1}">[下一页]</a>
+                                        href="${pageContext.request.contextPath }/staff/gotoStaffManager.do?currentPage=${requestScope.currPage+1}">[下一页]</a>
                                 </div>
 
                                 <div class="btn3"><a
-                                        href="${pageContext.request.contextPath }/staff/staffManager.do?currentPage=${requestScope.totalPage}">[尾页]</a>
+                                        href="${pageContext.request.contextPath }/staff/gotoStaffManager.do?currentPage=${requestScope.totalPage}">[尾页]</a>
                                 </div>
                             </c:if>
 

@@ -147,10 +147,7 @@
 
     <update id="updateStaff" parameterType="com.ziyan.entity.Staff">
         update staff
-        <set>
-            <if test="sId!=null">
-                sId=#{sId,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="set" suffixOverrides=",">
             <if test="sName!=null">
                 sName=#{sName,jdbcType=VARCHAR},
             </if>
@@ -176,7 +173,7 @@
            <if test="sIdentityId!=null">
                sIdentityId=#{sIdentityId,jdbcType=VARCHAR},
             </if>
-        </set>
+        </trim>
         WHERE sId=#{sId,jdbcType=VARCHAR}
     </update>
 
