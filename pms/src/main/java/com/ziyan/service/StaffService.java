@@ -39,4 +39,6 @@ public interface StaffService {
      * @return
      */
     List<Staff> selectStaffByNameOrId(Staff staff);
+
+    List<Staff> selectStaffByName(String sName);
 }

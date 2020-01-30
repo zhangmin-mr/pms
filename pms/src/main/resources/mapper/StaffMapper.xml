@@ -56,7 +56,7 @@
     </select>
 
     <select id="getStaffByPage" parameterType="Map" resultMap="BaseResultMap2">
-        Select  s.id,
+        Select s.id,
         s.sId,
         s.sName,
         s.sSex,
@@ -83,8 +83,34 @@
         </if>
     </select>
 
-    <select id="selectStaffByNameOrId" parameterType="com.ziyan.entity.Staff" resultMap="BaseResultMap2">
+    <select id="selectStaffByName" parameterType="java.lang.String" resultMap="BaseResultMap2">
         Select  s.id,
+        s.sId,
+        s.sName,
+        s.sSex,
+        s.sBirthday,
+        s.sPost,
+        s.sSalary,
+        s.sEntry,
+        s.sIdentityId,
+        d.dId,
+        d.dName,
+        d.dFunction,
+        d.dLeader,
+        pt.pName
+        from staff s
+        LEFT JOIN
+        department d ON s.dId=d.dId
+        LEFT JOIN
+        postsetting ps on ps.dId=d.dId
+        left Join
+        postcategory pt ON ps.pId = pt.pId
+        where 1=1 and pt.pId=s.sPost
+        and s.sName=#{param1}
+    </select>
+
+    <select id="selectStaffByNameOrId" parameterType="com.ziyan.entity.Staff" resultMap="BaseResultMap2">
+        Select s.id,
         s.sId,
         s.sName,
         s.sSex,
@@ -110,7 +136,7 @@
             and s.sName like concat('%',#{sName,jdbcType=VARCHAR},'%')
         </if>
         <if test="sId != null and sId != '' ">
-           and s.sId = #{sId,jdbcType=VARCHAR}
+            and s.sId = #{sId,jdbcType=VARCHAR}
         </if>
 
     </select>
@@ -170,8 +196,8 @@
             <if test="sEntry!=null">
                 sEntry=#{sEntry,jdbcType=TIMESTAMP},
             </if>
-           <if test="sIdentityId!=null">
-               sIdentityId=#{sIdentityId,jdbcType=VARCHAR},
+            <if test="sIdentityId!=null">
+                sIdentityId=#{sIdentityId,jdbcType=VARCHAR},
             </if>
         </trim>
         WHERE sId=#{sId,jdbcType=VARCHAR}

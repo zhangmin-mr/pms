@@ -10,6 +10,7 @@ import java.util.List;
 public interface StaffMapper {
     /**
      * 分页查询所有的员工
+     *
      * @param map
      * @return
      */
@@ -17,6 +18,7 @@ public interface StaffMapper {
 
     /**
      * 修改员工
+     *
      * @param staff
      * @return
      */
@@ -24,12 +26,14 @@ public interface StaffMapper {
 
     /**
      * 员工总数
+     *
      * @return
      */
     int getStaffCount();
 
     /**
      * 添加员工信息
+     *
      * @param staff
      * @return
      */
@@ -37,15 +41,20 @@ public interface StaffMapper {
 
     /**
      * 按名字或Id查询
+     *
      * @param staff
      * @return
      */
     List<Staff> selectStaffByNameOrId(Staff staff);
 
-
+    /**
+     * 按照名字查询员工
+     * @param sName
+     * @return
+     */
+    List<Staff> selectStaffByName(String sName);
 
     /**
-     *
      * @param sId
      * @return
      */

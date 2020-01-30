@@ -67,4 +67,9 @@ public class StaffServiceImpl implements StaffService {
         System.out.println(staff);
         return staffDao.selectStaffByNameOrId(staff);
     }
+
+    @Override
+    public List<Staff> selectStaffByName(String sName) {
+        return staffDao.selectStaffByName(sName);
+    }
 }

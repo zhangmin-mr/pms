@@ -84,7 +84,7 @@
                             <ul>
                                 <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="servlet/searchStaffchange"
                                                                         target="PageFrame">员工调动记录查询</a></li>
-                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="servlet/gotoAddstaffchange"
+                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="staff/gotoAddstaffchange.do"
                                                                         target="PageFrame">员工调动登记</a></li>
                                 <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="servlet/manageStaffchange"
                                                                         target="PageFrame">员工调动信息管理</a></li>

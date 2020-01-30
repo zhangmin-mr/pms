@@ -7,6 +7,7 @@ import com.ziyan.entity.Staff;
 import com.ziyan.service.DepartmentService;
 import com.ziyan.service.PostcategoryService;
 import com.ziyan.service.StaffService;
+import com.ziyan.utils.JsonResult;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +18,14 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("staff/")
 @SessionAttributes(names = {"message"})
-public class StaffController {
+public class StaffController extends BaseController{
     private Logger log = Logger.getLogger(StaffController.class);
     @Autowired
     StaffService staffService;
@@ -42,6 +44,47 @@ public class StaffController {
         model.addAttribute("currPage", staffByPage.getCurrPage());
         model.addAttribute("totalPage", staffByPage.getTotalPage());
         return "staff/staffmanage";
+    }
+
+    /**
+     * 调转到员工调动登记页面
+     *
+     * @return
+     */
+    @GetMapping("gotoAddstaffchange")
+    public String gotoAddstaffchange(Model model) {
+        List<Postcategory> postcategoryList = new ArrayList<Postcategory>();//查询所有职位
+        postcategoryList = postcategoryService.getPostcategory();
+        List<Department> departmentList = new ArrayList<Department>();//查找所有部门
+        departmentList = departmentService.getDepartment();
+        model.addAttribute("post", postcategoryList);
+        model.addAttribute("department", departmentList);
+        return "staffchange/addstaffchange";
+    }
+
+    @PostMapping("AjaxStaff")
+    @ResponseBody
+    public JsonResult AjaxStaff(String sName){
+        JsonResult result =new JsonResult();
+        List<Staff> staffList=new ArrayList<Staff>();
+        staffList=staffService.selectStaffByName(sName);
+        if(staffList!=null){
+            result= success(staffList);
+        }
+        return result;
+    }
+
+
+
+    @PostMapping("addStaffChange")
+    public String addStaffchange(Model model){
+        List<Postcategory> postcategoryList = new ArrayList<Postcategory>();//查询所有职位
+        postcategoryList = postcategoryService.getPostcategory();
+        List<Department> departmentList = new ArrayList<Department>();//查找所有部门
+        departmentList = departmentService.getDepartment();
+        model.addAttribute("post", postcategoryList);
+        model.addAttribute("department", departmentList);
+        return "staffchange/addstaffchange";
     }
 
     /**
@@ -159,7 +202,7 @@ public class StaffController {
         }
         //封装一个员工
         Staff staff1 = new Staff(staff.getsId(), staff.getsName(), staff.getsSex(), birth, sPost, sDepartmentName, staff.getsSalary(), new Timestamp(jobDate.getTime()), staff.getsIdentityId());
-       log.info(staff1);
+        log.info(staff1);
         staffService.updateStaff(
                 staff1);
         return "staff/staffupdate";
