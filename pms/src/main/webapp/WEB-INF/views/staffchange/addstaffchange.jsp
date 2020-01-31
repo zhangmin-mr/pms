@@ -12,17 +12,17 @@
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/static/css/main.css">
-	
-	<script language="javascript">
-	function gongzi(){
-	 var obj = document.getElementById("sPost");
-	 var index = obj.selectedIndex;
-	 var obj2 = document.getElementById("sSalary");
-	 obj2.selectedIndex = index;
-	} 
-	 
-	
-</script>
+
+   <script
+           src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+   <script
+           src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+   <script
+           src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+
+   <script type="text/javascript"
+           src="${pageContext.servletContext.contextPath}/static/js/addstaffchange.js"></script>
   </head>
 <body >
 
@@ -32,17 +32,15 @@
  </div>
  <div id="content">
  <div class="right_tittle"><span>员工调动登记</span></div>
- <table>
+  <table>
+
  <tr><td>员工姓名：</td><td class="last2"><input name="sName" type="text" style="width:345px;"/></td></tr>
  <tr><td>身份证号：</td><td class="last2"><input name="sIdentityId" type="text" maxlength="18" style="width:345px;"/></td></tr>
  <tr><td style="width:20%;">原职位：</td><td  class="last2" align="left">
-  <select name="sPost" id="sPostold" style="width:350px;" onchange="gongzi()"  >
-  <c:forEach items="${post}" var="pt"> 
-  <option value="<c:out value="${pt.pId }"></c:out>"><c:out value="${pt.pName }"></c:out></option>
-  </c:forEach>
-  </select>
+  <input name="pId" type="hidden" />
+  <input name="sPostcategory" type="text" style="width:345px;">
   调任职位：
-  <select name="sPost" id="sPostnew" style="width:350px;" onchange="gongzi()"  >
+  <select name="sPost" id="sPostnew" style="width:350px;"   >
   <c:forEach items="${post}" var="pt"> 
   <option value="<c:out value="${pt.pId }"></c:out>"><c:out value="${pt.pName }"></c:out></option>
   </c:forEach>
@@ -50,13 +48,10 @@
   </td>
   </tr>
   <tr><td style="width:20%;">原部门：</td><td  class="last2" align="left">
-  <select name="sDeptold" id="sDepartmentold" style="width:350px;" onchange="gongzi()"  >
-  <c:forEach items="${department}" var="dt"> 
-  <option value="<c:out value="${dt.dId }"></c:out>"><c:out value="${dt.dName }"></c:out></option>
-  </c:forEach>
-  </select>
+   <input name="dId" type="hidden"/>
+   <input name="sDepartment" type="text" style="width:345px;"/>
   调任部门：
-  <select name="sDeptnew" id="sDepartmentnew" style="width:350px;" onchange="gongzi()"  >
+  <select name="sDeptnew" id="sDepartmentnew" style="width:350px;"   >
   <c:forEach items="${department}" var="dt">
   <option value="<c:out value="${dt.dId }"></c:out>"><c:out value="${dt.dName }"></c:out></option>
   </c:forEach>

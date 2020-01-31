@@ -41,6 +41,7 @@
         <result column="sIdentityId" jdbcType="VARCHAR"
                 property="sIdentityId"/>
         <association column="dId" property="sDepartment" resultMap="com.ziyan.dao.DepartmentMapper.BaseResultMap3"/>
+        <association column="sPost" property="sPostcategory" resultMap="com.ziyan.dao.PostcategoryMapper.BaseResultMap"/>
     </resultMap>
 
 
@@ -69,7 +70,9 @@
         d.dName,
         d.dFunction,
         d.dLeader,
-        pt.pName
+        pt.pName,
+        pt.pId,
+        pt.pSalary
         from staff s
         LEFT JOIN
         department d ON s.dId=d.dId
@@ -97,7 +100,9 @@
         d.dName,
         d.dFunction,
         d.dLeader,
-        pt.pName
+        pt.pName,
+        pt.pId,
+        pt.pSalary
         from staff s
         LEFT JOIN
         department d ON s.dId=d.dId
@@ -123,7 +128,10 @@
         d.dName,
         d.dFunction,
         d.dLeader,
-        pt.pName
+        pt.pName,
+        pt.pId,
+        pt.pSalary
+
         from staff s
         LEFT JOIN
         department d ON s.dId=d.dId

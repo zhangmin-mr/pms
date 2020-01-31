@@ -62,30 +62,32 @@ public class StaffController extends BaseController{
         return "staffchange/addstaffchange";
     }
 
-    @PostMapping("AjaxStaff")
+    @PostMapping("addStaffChange")
+    public String addStaffChange(Model model){
+
+        return  "";
+    }
+
+
+    /**
+     * Ajax异步查询员工的信息
+     * @param sName
+     * @return
+     */
+    @PostMapping(value = "AjaxStaff")
     @ResponseBody
     public JsonResult AjaxStaff(String sName){
         JsonResult result =new JsonResult();
         List<Staff> staffList=new ArrayList<Staff>();
         staffList=staffService.selectStaffByName(sName);
         if(staffList!=null){
+            log.info(staffList);
             result= success(staffList);
         }
         return result;
     }
 
 
-
-    @PostMapping("addStaffChange")
-    public String addStaffchange(Model model){
-        List<Postcategory> postcategoryList = new ArrayList<Postcategory>();//查询所有职位
-        postcategoryList = postcategoryService.getPostcategory();
-        List<Department> departmentList = new ArrayList<Department>();//查找所有部门
-        departmentList = departmentService.getDepartment();
-        model.addAttribute("post", postcategoryList);
-        model.addAttribute("department", departmentList);
-        return "staffchange/addstaffchange";
-    }
 
     /**
      * 员工管理

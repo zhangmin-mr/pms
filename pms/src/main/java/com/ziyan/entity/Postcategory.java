@@ -11,6 +11,15 @@ public class Postcategory {
 	private String pName;//职位名称
 	private String pSalary;//职位工资
 	private List<Department> departmentList;
+	private List<Staff> staffList;
+
+	public List<Staff> getStaffList() {
+		return staffList;
+	}
+
+	public void setStaffList(List<Staff> staffList) {
+		this.staffList = staffList;
+	}
 
 	public List<Department> getDepartmentList() {
 		return departmentList;

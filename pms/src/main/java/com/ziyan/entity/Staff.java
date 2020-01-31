@@ -19,9 +19,11 @@ public class Staff {
     private String sPost;//职位，岗位编号
     private String dId;//部门编号
     private Department sDepartment;//部门
+    private Postcategory sPostcategory;//职位
     private String sSalary;//工资
     private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
+
 
     @Override
     public String toString() {
@@ -34,10 +36,19 @@ public class Staff {
                 ", sPost='" + sPost + '\'' +
                 ", dId='" + dId + '\'' +
                 ", sDepartment=" + sDepartment +
+                ", sPostcategory=" + sPostcategory +
                 ", sSalary='" + sSalary + '\'' +
                 ", sEntry=" + sEntry +
                 ", sIdentityId='" + sIdentityId + '\'' +
                 '}';
+    }
+
+    public Postcategory getsPostcategory() {
+        return sPostcategory;
+    }
+
+    public void setsPostcategory(Postcategory sPostcategory) {
+        this.sPostcategory = sPostcategory;
     }
 
     public Staff() {
@@ -156,5 +167,6 @@ public class Staff {
     public void setsIdentityId(String sIdentityId) {
         this.sIdentityId = sIdentityId;
     }
+
 
 }

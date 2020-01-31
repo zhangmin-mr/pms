@@ -12,6 +12,8 @@
                 property="pSalary"/>
 
     </resultMap>
+
+
     <sql id="Base_Column_List">
         id,pId,pName,pSalary
     </sql>
