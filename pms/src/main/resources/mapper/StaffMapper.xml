@@ -34,6 +34,8 @@
                 property="sBirthday"/>
         <result column="sPost" jdbcType="VARCHAR"
                 property="sPost"/>
+        <result column="dId" jdbcType="VARCHAR"
+                property="dId"/>
         <result column="sSalary" jdbcType="VARCHAR"
                 property="sSalary"/>
         <result column="sEntry" jdbcType="TIMESTAMP"

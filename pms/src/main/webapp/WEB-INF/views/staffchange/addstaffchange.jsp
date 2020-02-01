@@ -26,7 +26,7 @@
   </head>
 <body >
 
-<form name="form1" method="post" action="staff/addStaffChange.do" >
+<form name="form1" method="post" action="addStaffchange.do" >
  <div id="nav"><img src="${pageContext.servletContext.contextPath}/static/images/icon_home.gif" />
  当前位置：主页 >> 员工调动信息管理 >> 员工调动登记
  </div>
@@ -35,12 +35,13 @@
   <table>
 
  <tr><td>员工姓名：</td><td class="last2"><input name="sName" type="text" style="width:345px;"/></td></tr>
+   <input name="sId" type="hidden"/>
  <tr><td>身份证号：</td><td class="last2"><input name="sIdentityId" type="text" maxlength="18" style="width:345px;"/></td></tr>
  <tr><td style="width:20%;">原职位：</td><td  class="last2" align="left">
-  <input name="pId" type="hidden" />
+  <input name="pIdOld" type="hidden" />
   <input name="sPostcategory" type="text" style="width:345px;">
   调任职位：
-  <select name="sPost" id="sPostnew" style="width:350px;"   >
+  <select name="pIdNew" id="sPostnew" style="width:350px;"   >
   <c:forEach items="${post}" var="pt"> 
   <option value="<c:out value="${pt.pId }"></c:out>"><c:out value="${pt.pName }"></c:out></option>
   </c:forEach>
@@ -48,10 +49,10 @@
   </td>
   </tr>
   <tr><td style="width:20%;">原部门：</td><td  class="last2" align="left">
-   <input name="dId" type="hidden"/>
+   <input name="dIdOld" type="hidden"/>
    <input name="sDepartment" type="text" style="width:345px;"/>
   调任部门：
-  <select name="sDeptnew" id="sDepartmentnew" style="width:350px;"   >
+  <select name="dIdNew" id="sDepartmentnew" style="width:350px;"   >
   <c:forEach items="${department}" var="dt">
   <option value="<c:out value="${dt.dId }"></c:out>"><c:out value="${dt.dName }"></c:out></option>
   </c:forEach>

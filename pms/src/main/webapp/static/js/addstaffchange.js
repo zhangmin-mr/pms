@@ -10,11 +10,19 @@ $(function () {
                     $("#s1").html(data.msg);
                     if (items != null) {
                         $.each(items, function (i, n) {
+
+                            console.log("ddd");
+                            console.log(items[i].sId);
+
+
                             $("input[name='sIdentityId']").val(items[i].sIdentityId);
-                            $("input[name='dId']").val(items[i].sDepartment.dId);
+                            console.log(items[i].sDepartment.dId);
+                            $("input[name='dIdOld']").val(items[i].sDepartment.dId);
                             $("input[name='sDepartment']").val(items[i].sDepartment.dName);
-                            $("input[name='pId']").val(items[i].sPostcategory.pId);
+                            console.log(items[i].sPostcategory.pId);
+                            $("input[name='pIdOld']").val(items[i].sPostcategory.pId);
                             $("input[name='sPostcategory']").val(items[i].sPostcategory.pName);
+                            $("input[name='sId']").val(items[i].sId);
                         })
 
                     }
