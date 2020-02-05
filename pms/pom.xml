@@ -59,7 +59,7 @@
     <!-- log end -->
 
     <!-- config.spring.security -->
-    <shiro.version>1.2.4</shiro.version>
+    <shiro.version>1.5.0</shiro.version>
 
     <guava.version>17.0</guava.version>
     <!--commons -->
