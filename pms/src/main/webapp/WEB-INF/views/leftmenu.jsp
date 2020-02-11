@@ -82,7 +82,7 @@
                     <tr>
                         <td>
                             <ul>
-                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="servlet/searchStaffchange"
+                                <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="staffchange/gotoSearchStaffchange.do"
                                                                         target="PageFrame">员工调动记录查询</a></li>
                                 <li><img src="${pageContext.servletContext.contextPath}/static/images/icon_list.gif"/><a href="staffchange/gotoAddstaffchange.do"
                                                                         target="PageFrame">员工调动登记</a></li>

@@ -1,6 +1,7 @@
 package com.ziyan.dao;
 
 import com.ziyan.entity.Postcategory;
+import com.ziyan.entity.Staffchange;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface PostcategoryMapper {
      * @return
      */
     Postcategory getPostcategoryIdByName(String pName);
+
 }

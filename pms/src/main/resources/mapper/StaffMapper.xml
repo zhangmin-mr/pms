@@ -46,6 +46,31 @@
         <association column="sPost" property="sPostcategory" resultMap="com.ziyan.dao.PostcategoryMapper.BaseResultMap"/>
     </resultMap>
 
+    <resultMap id="BaseResultMap3"
+               type="com.ziyan.entity.Staff">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="sId" jdbcType="VARCHAR" property="sId"/>
+        <result column="sName" jdbcType="VARCHAR"
+                property="sName"/>
+        <result column="sSex" jdbcType="VARCHAR"
+                property="sSex"/>
+        <result column="sBirthday" jdbcType="VARCHAR"
+                property="sBirthday"/>
+        <result column="sPost" jdbcType="VARCHAR"
+                property="sPost"/>
+        <result column="dId" jdbcType="VARCHAR"
+                property="dId"/>
+        <result column="sSalary" jdbcType="VARCHAR"
+                property="sSalary"/>
+        <result column="sEntry" jdbcType="TIMESTAMP"
+                property="sEntry"/>
+        <result column="sIdentityId" jdbcType="VARCHAR"
+                property="sIdentityId"/>
+        <association column="dId" property="sDepartment" resultMap="com.ziyan.dao.DepartmentMapper.BaseResultMap"/>
+        <association column="sPost" property="sPostcategory" resultMap="com.ziyan.dao.PostcategoryMapper.BaseResultMap"/>
+    </resultMap>
+
+
 
     <sql id="Base_Column_List">
         id,sId,sName,sSex,sBirthday,sPost,sSalary,sEntry,sIdentityId

@@ -3,20 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%String path=request.getContextPath(); %>
-<% 
- 	    int PageSize= Integer.parseInt(request.getAttribute("PageSize").toString());
-	    int StartRow = Integer.parseInt(request.getAttribute("StartRow").toString());
-	    int PageNo = Integer.parseInt(request.getAttribute("PageNo").toString());
-	    int CounterStart = Integer.parseInt(request.getAttribute("CounterStart").toString());
-	    int CounterEnd = Integer.parseInt(request.getAttribute("CounterEnd").toString());
-	    int RecordCount = Integer.parseInt(request.getAttribute("RecordCount").toString());
-	    int MaxPage = Integer.parseInt(request.getAttribute("MaxPage").toString());
-	    int PrevStart = Integer.parseInt(request.getAttribute("PrevStart").toString());
-	    int NextPage = Integer.parseInt(request.getAttribute("NextPage").toString());
-	    int LastRec =Integer.parseInt(request.getAttribute("LastRec").toString());
-	    int LastStartRecord = 0;//最后一页开始显示记录的编号
-		
- %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>    
@@ -27,11 +14,11 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="<%=path %>/css/main.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.servletContext.contextPath}/static/css/main.css">
   </head>
 <body>
 <form name="form1" method="post" action="<%=path %>/servlet/searchStaff">
- <div id="nav"><img src="<%=path %>/images/icon_home.gif" />
+ <div id="nav"><img src="${pageContext.servletContext.contextPath}/static/images/icon_home.gif" />
  当前位置：主页 >> 员工信息管理 >> 员工调动历史记录查询
  </div>
  <div id="search">
@@ -48,17 +35,17 @@
  <td>记录编号</td><td>员工编号</td><td>员工姓名</td><td>员工性别</td>
  <td>出生年月</td><td>身份证号</td><td>职位</td><td>部门</td><td>薪水</td><td>入职时间</td><td>管理操作</td>
  </tr>
- <c:forEach items="${staff}" var="staff">
+ <c:forEach items="${staffchangeByPage}" var="staff">
  <tr><td ><c:out value="${staff.id}"></c:out></td>
   <td ><c:out value="${staff.sId}"></c:out></td>
-  <td ><c:out value="${staff.sName}"></c:out></td>
-  <td><c:out value="${staff.sSex}"></c:out></td>
-  <td ><fmt:parseDate value="${staff.sBirthday}" var="birthdate" pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${birthdate }"/></td>
-  <td ><c:out value="${staff.sIdentityId}"></c:out></td>
-  <td><c:out value="${staff.sPost}"></c:out></td>
-  <td ><c:out value="${staff.sDepartment}"></c:out></td>
-  <td><c:out value="${staff.sSalary}"></c:out></td>
- <td ><fmt:parseDate value="${staff.sBirthday}" var="date" pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${date }"/></td>
+  <td ><c:out value="${staff.staff.sName}"></c:out></td>
+  <td><c:out value="${staff.staff.sSex}"></c:out></td>
+  <td ><fmt:parseDate value="${staff.staff.sBirthday}" var="birthdate" pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${birthdate }"/></td>
+  <td ><c:out value="${staff.staff.sIdentityId}"></c:out></td>
+  <td><c:out value="${staff.staff.sPostcategory.pName}"></c:out></td>
+  <td ><c:out value="${staff.staff.sDepartment.dName}"></c:out></td>
+  <td><c:out value="${staff.staff.sSalary}"></c:out></td>
+ <td ><fmt:parseDate value="${staff.staff.sBirthday}" var="date" pattern="yyyy-MM-dd"></fmt:parseDate><fmt:formatDate value="${date }"/></td>
   <td width="100px">
   <div class="btn2"><a href="<%=path %>/servlet/gotoUpdatestaff?dId=<c:out value="${staff.sId}"></c:out>">更改</a></div> 
   <div class="btn2"><a href="<%=path %>/servlet/delStaff?dId=${staff.sId}">删除</a></div> 
@@ -68,65 +55,28 @@
   <tr>
   <td colspan="11" height="40px">
   <div id="paging">
-  <div class="btn4">共<%=RecordCount%>条 </div>
-  <div class="btn4">第<%=PageNo%>/<%=MaxPage %>页</div>
-        <%
-            //显示第一页或者前一页的链接
-            //如果当前页不是第1页，则显示第一页和前一页的链接
-            if (PageNo != 1) {
-                PrevStart = PageNo - 1;
-                %>
-                <div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=1">第一页 </a></div>
-                <div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=<%=PrevStart%>">前一页</a></div>
-             <% 
-            }
-            //打印需要显示的页码
-            for (int c = CounterStart; c <= CounterEnd; c++) {
-                if (c < MaxPage) {
-                    if (c == PageNo) {
-                        if (c % PageSize == 0) {
-                            out.print("<div class=pagenum>"+c+"</div>");
-                        } else {
-                            out.print("<div class=pagenum>"+c +"</div>"+ " ");
-                        }
-                    } else if (c % PageSize == 0) {
-                        out.print("<div class=pagenum><a href=/permanage/servlet/manageDepartment?page=" + c + ">" + c
-                                + "</a></div>");
-                    } else {
-                        out.print("<div class=pagenum><a href=/permanage/servlet/manageDepartment?page=" + c + ">" + c
-                                + "</a></div>");
-                    }
-                } else {
-                    if (PageNo == MaxPage) {
-                        out.print("<div class=pagenum><a href=/permanage/servlet/manageDepartment?page=" + c + ">" + c
-                                + "</a></div>");
-                        break;
-                    } else {
-                        out.print("<div class=pagenum><a href=/permanage/servlet/manageDepartment?page=" + c + ">" + c
-                                + "</a></div>");
-                        break;
-                    }
-                }
-            }
-           
-            if (PageNo < MaxPage) { //如果当前页不是最后一页，则显示下一页链接
-                NextPage = PageNo + 1;
-                %><div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=<%=NextPage %>">下一页</a></div>
-                <%
-            }
-            //同时如果当前页不是最后一页，要显示最后一页的链接
-            if (PageNo < MaxPage) {
-                LastRec = RecordCount % PageSize;
-                if (LastRec == 0) {
-                    LastStartRecord = RecordCount - PageSize;
-                } else {
-                    LastStartRecord = RecordCount - LastRec;
-                }
-				%>
-                <div class="btn3"><a href="<%=path %>/servlet/manageDepartment?page=<%=MaxPage%>">最后一页</a></div>
-                <%
-            }        
-        %>
+  <div class="btn4">共${requestScope.totalCount}条 </div>
+  <div class="btn4">第${requestScope.currPage}/${requestScope.totalPage}页</div>
+      <c:if
+              test="${requestScope.currPage != 1 && requestScope.currPage != null}">
+          <div class="btn3"><a
+                  href="${pageContext.request.contextPath }/staffchange/gotoSearchStaffchange.do?currentPage=1">[首页]</a>
+              <a
+                      href="${pageContext.request.contextPath }/staffchange/gotoAddstaffchange.do?currentPage=${requestScope.currPage-1}">[上一页]</a>
+          </div>
+      </c:if>
+
+
+      <c:if
+              test="${requestScope.currPage != requestScope.totalPage && requestScope.currPage != null}">
+          <div class="btn3"><a
+                  href="${pageContext.request.contextPath }/staffchange/gotoSearchStaffchange.do?currentPage=${requestScope.currPage+1}">[下一页]</a>
+          </div>
+
+          <div class="btn3"><a
+                  href="${pageContext.request.contextPath }/staffchange/gotoSearchStaffchange.do?currentPage=${requestScope.totalPage}">[尾页]</a>
+          </div>
+      </c:if>
   </div>
   </td>
   </tr>

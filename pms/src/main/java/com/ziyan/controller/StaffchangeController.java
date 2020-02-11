@@ -1,9 +1,6 @@
 package com.ziyan.controller;
 
-import com.ziyan.entity.Department;
-import com.ziyan.entity.Postcategory;
-import com.ziyan.entity.Staff;
-import com.ziyan.entity.Staffchange;
+import com.ziyan.entity.*;
 import com.ziyan.service.DepartmentService;
 import com.ziyan.service.PostcategoryService;
 import com.ziyan.service.StaffService;
@@ -13,10 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +46,27 @@ public class StaffchangeController extends BaseController{
             result= success(staffList);
         }
         return result;
+    }
+
+    /**
+     * 跳转到员工调动查询
+     * @param model
+     * @param currentPage
+     * @return
+     */
+
+    @GetMapping("gotoSearchStaffchange")
+    public String gotoSearchStaffchange(Model model,@RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage){
+        PageBean<Staffchange> staffchangePageBean= staffchangeService.selectStaffChangeByPage(currentPage);
+        for( Staffchange ss:staffchangePageBean.getLists()){
+            log.info("员工调动"+ss);
+        }
+
+        model.addAttribute("staffchangeByPage", staffchangePageBean.getLists());
+        model.addAttribute("totalCount", staffchangePageBean.getTotalCount());
+        model.addAttribute("currPage", staffchangePageBean.getCurrPage());
+        model.addAttribute("totalPage", staffchangePageBean.getTotalPage());
+        return "staffchange/staffchangesearch";
     }
 
 

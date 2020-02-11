@@ -6,6 +6,7 @@ package com.ziyan.entity;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /*
  * 员工信息
@@ -23,6 +24,7 @@ public class Staff {
     private String sSalary;//工资
     private Timestamp sEntry;//入职时间
     private String sIdentityId;//身份证号
+    private List<Staffchange> staffchanges;
 
 
     @Override
@@ -40,6 +42,7 @@ public class Staff {
                 ", sSalary='" + sSalary + '\'' +
                 ", sEntry=" + sEntry +
                 ", sIdentityId='" + sIdentityId + '\'' +
+                ", staffchanges=" + staffchanges +
                 '}';
     }
 
@@ -78,6 +81,14 @@ public class Staff {
         this.sSalary = sSalary;
         this.sEntry = sEntry;
         this.sIdentityId = sIdentityId;
+    }
+
+    public List<Staffchange> getStaffchanges() {
+        return staffchanges;
+    }
+
+    public void setStaffchanges(List<Staffchange> staffchanges) {
+        this.staffchanges = staffchanges;
     }
 
     public String getdId() {

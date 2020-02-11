@@ -19,8 +19,64 @@
         <result column="sRemark" jdbcType="VARCHAR"
                 property="sRemark"/>
     </resultMap>
+    
+    
 
-    <insert id="addStaffChange" parameterType="com.ziyan.entity.Staffchange" >
+    <resultMap id="BaseResultMap2"
+               type="com.ziyan.entity.Staffchange">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="sId" jdbcType="VARCHAR" property="sId"/>
+        <result column="pIdOld" jdbcType="VARCHAR"
+                property="pIdOld"/>
+        <result column="pIdNew" jdbcType="VARCHAR"
+                property="pIdNew"/>
+        <result column="dIdOld" jdbcType="VARCHAR"
+                property="dIdOld"/>
+        <result column="dIdNew" jdbcType="VARCHAR"
+                property="dIdNew"/>
+        <result column="sNature" jdbcType="VARCHAR"
+                property="sNature"/>
+        <result column="sRemark" jdbcType="VARCHAR"
+                property="sRemark"/>
+        <association column="sId" property="staff" resultMap="com.ziyan.dao.StaffMapper.BaseResultMap3">
+
+         </association>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,sId,pIdOld,pIdNew,dIdOld,dIdNew,sNature,sRemark
+    </sql>
+
+    <select id="selectStaffChangeByPage" parameterType="Map" resultMap="BaseResultMap2">
+        select
+        sc.id,
+        s.sId,
+        s.sName,
+        s.sSex,
+        s.sBirthday,
+        s.sIdentityId,
+        s.sSalary,
+        pt.pName,
+        d.dName
+        from staffchange as sc
+        LEFT JOIN staff as s
+        ON s.sId=sc.sId
+        LEFT JOIN
+        department d ON s.dId=d.dId
+        LEFT JOIN
+        postcategory pt ON pt.pId = s.sPost
+        where
+        1=1
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getStaffchangeCount" resultType="int">
+        select count(*) from staffchange
+    </select>
+
+    <insert id="addStaffChange" parameterType="com.ziyan.entity.Staffchange">
         insert into staffchange
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="sId != null">

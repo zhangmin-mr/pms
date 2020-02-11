@@ -23,6 +23,15 @@
 
    <script type="text/javascript"
            src="${pageContext.servletContext.contextPath}/static/js/addstaffchange.js"></script>
+
+<%--      <script language="JavaScript">--%>
+<%--          function Refresh()--%>
+<%--          {--%>
+<%--              window.location.reload();--%>
+<%--          }--%>
+<%--          setTimeout('Refresh()',3000); //3秒刷新一次--%>
+<%--      </script>--%>
+
   </head>
 <body >
 

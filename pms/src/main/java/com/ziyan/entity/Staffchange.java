@@ -1,5 +1,7 @@
 package com.ziyan.entity;
 
+import java.util.List;
+
 /*
 * 员工调动
 * */
@@ -12,6 +14,16 @@ public class Staffchange {
 	private String dIdNew;//调任部门编号
 	private String sNature;//性质(长期或短期)
 	private String sRemark;//备注
+	private Staff  staff;
+
+	public Staff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -59,5 +71,20 @@ public class Staffchange {
 	}
 	public void setsRemark(String sRemark) {
 		this.sRemark = sRemark;
+	}
+
+	@Override
+	public String toString() {
+		return "Staffchange{" +
+				"id=" + id +
+				", sId='" + sId + '\'' +
+				", pIdOld='" + pIdOld + '\'' +
+				", pIdNew='" + pIdNew + '\'' +
+				", dIdOld='" + dIdOld + '\'' +
+				", dIdNew='" + dIdNew + '\'' +
+				", sNature='" + sNature + '\'' +
+				", sRemark='" + sRemark + '\'' +
+				", staff=" + staff +
+				'}';
 	}
 }
