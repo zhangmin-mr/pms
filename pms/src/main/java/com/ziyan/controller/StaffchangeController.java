@@ -39,7 +39,7 @@ public class StaffchangeController extends BaseController{
     @ResponseBody
     public JsonResult AjaxStaff(String sName){
         JsonResult result =new JsonResult();
-        List<Staff> staffList=new ArrayList<Staff>();
+        List<Staff> staffList=null;
         staffList=staffService.selectStaffByName(sName);
         if(staffList!=null){
             log.info(staffList);
@@ -58,9 +58,9 @@ public class StaffchangeController extends BaseController{
     @GetMapping("gotoSearchStaffchange")
     public String gotoSearchStaffchange(Model model,@RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage){
         PageBean<Staffchange> staffchangePageBean= staffchangeService.selectStaffChangeByPage(currentPage);
-        for( Staffchange ss:staffchangePageBean.getLists()){
-            log.info("员工调动"+ss);
-        }
+//        for( Staffchange ss:staffchangePageBean.getLists()){
+//            log.info("员工调动"+ss);
+//        }
 
         model.addAttribute("staffchangeByPage", staffchangePageBean.getLists());
         model.addAttribute("totalCount", staffchangePageBean.getTotalCount());
@@ -77,20 +77,30 @@ public class StaffchangeController extends BaseController{
      */
     @GetMapping("gotoAddstaffchange")
     public String gotoAddstaffchange(Model model) {
-        List<Postcategory> postcategoryList = new ArrayList<Postcategory>();//查询所有职位
+        List<Postcategory> postcategoryList = null;//查询所有职位
         postcategoryList = postcategoryService.getPostcategory();
-        List<Department> departmentList = new ArrayList<Department>();//查找所有部门
+        List<Department> departmentList = null;//查找所有部门
         departmentList = departmentService.getDepartment();
         model.addAttribute("post", postcategoryList);
         model.addAttribute("department", departmentList);
         return "staffchange/addstaffchange";
     }
 
-
+    /**
+     * 员工调动提交操作
+     * @param model
+     * @param staffchange
+     * @return
+     */
     @PostMapping("addStaffchange")
     public String addStaffChange(Model model, Staffchange staffchange){
+        Staff staff=new Staff();
         if(staffchange!=null){
             log.info(staffchange);
+            staff.setsId(staffchange.getsId());
+            staff.setdId(staffchange.getdIdNew());
+            staff.setsPost(staffchange.getpIdNew());
+            staffService.updateStaff(staff);//修改员工及本信息
             staffchangeService.addStaffChange(staffchange);//员工调整数据加入数据库
         }
         return  "staffchange/addstaffchange";

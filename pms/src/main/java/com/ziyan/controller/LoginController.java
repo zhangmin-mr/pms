@@ -42,7 +42,6 @@ public class LoginController {
 
     @PostMapping("userLoginSubmit")
     public String main(HttpServletRequest request, String userName, String passWord, Model model, @RequestParam(value = "currentPage", defaultValue = "1", required = false) int currentPage) {
-
         HttpSession session = request.getSession();
         System.out.println("username=" + userName + "password=" + passWord);
         System.out.println("longin,,,,,,,,,,");
@@ -50,15 +49,15 @@ public class LoginController {
         admins = adminsService.getUserNameAndPassWord(userName, passWord);//验证账户密码
         if (admins != null) {
             //List<Department> departments = departmentService.getDepartment();//获得所有的部门
+            log.info("密码正确");
             List<Company> company = companyService.getCompany();//获得公司信息
             PageBean<Department> departmentPagemsg = departmentService.getDepartmentByPage(currentPage);//分页获得公司部门信息
             model.addAttribute("departmentPagemsg", departmentPagemsg);
             model.addAttribute("company", company);
             session.setAttribute("name",admins.getaName());
             return "index";
-
         }
-        return "redirect:login";
+        return "redirect:/login.do";
     }
 
     @GetMapping("homeList")
