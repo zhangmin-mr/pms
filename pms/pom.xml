@@ -64,7 +64,7 @@
     <guava.version>17.0</guava.version>
     <!--commons -->
     <commons-beanutils.version>1.9.2</commons-beanutils.version>
-    <commons-collections.version>3.2.1</commons-collections.version>
+    <commons-collections.version>3.2.2</commons-collections.version>
     <commons-lang3.version>3.4</commons-lang3.version>
     <!--commons -->
 
