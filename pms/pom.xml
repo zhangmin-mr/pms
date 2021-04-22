@@ -29,7 +29,7 @@
     <spring.version>4.3.5.RELEASE</spring.version>
     <!-- db start -->
     <!-- orm start -->
-    <mybatis.version>3.2.8</mybatis.version>
+    <mybatis.version>3.5.6</mybatis.version>
     <mybatis-spring.version>1.2.2</mybatis-spring.version>
     <!-- orm end -->
 
