@@ -34,7 +34,7 @@
     <!-- orm end -->
 
     <!-- jdbc-connector driver -->
-    <mysql-connector-java.version>8.0.18</mysql-connector-java.version>
+    <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 
     <!-- dataSource start -->
     <commons-dbcp.version>1.4</commons-dbcp.version>
