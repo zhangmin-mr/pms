@@ -26,7 +26,7 @@
     <!-- project end -->
 
     <!-- spring -->
-    <spring.version>4.3.5.RELEASE</spring.version>
+    <spring.version>5.2.20.RELEASE</spring.version>
     <!-- db start -->
     <!-- orm start -->
     <mybatis.version>3.2.8</mybatis.version>
